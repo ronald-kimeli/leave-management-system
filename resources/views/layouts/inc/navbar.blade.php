@@ -1,0 +1,63 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow fixed-top">
+  <div class="container">
+    <a class="navbar-brand " href="#">Leave Application Website</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav  ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{url('/')}}">Home</a>
+        </li>
+        <!-- <li class="nav-item">
+          <a class="nav-link active" href="{{url('about')}}">About Us</a>
+        </li> -->
+
+        @guest
+        @if (Route::has('login'))
+        <li class="nav-item">
+          <a class="nav-link active" href="{{ route('login') }}">{{ __('Login') }}</a>
+        </li>
+        @endif
+
+        @if (Route::has('register'))
+        <li class="nav-item">
+          <a class="nav-link active" href="{{ route('register') }}">{{ __('Register') }}</a>
+        </li>
+        @endif
+        @else
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ __('Leave Application') }}
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="{{ url('add_applyleave') }}">{{ __('Apply_Leave') }}</a>
+            <a class="dropdown-item" href="{{ url('show_applyleave') }}">{{ __('Leave Status') }}</a>
+          </div>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a id="navbarDropdown" class="nav-link active dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+            {{ Auth::user()->name.' '.Auth::user()->last_name }}
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">My Profile</a>
+            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                          document.getElementById('logout-form').submit();">
+              {{ __('Logout') }}
+            </a>
+
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+              @csrf
+            </form>
+          </div>
+        </li>
+        @endguest
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
