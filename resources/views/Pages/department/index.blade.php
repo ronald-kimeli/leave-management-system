@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container py-5">
-  
+
     <div class="card col-md-8 shadow offset-2">
       @include('Pages.department.message')
       <div class="card-header text-center">
@@ -24,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($department as $empdata )
+            @foreach($departments as $empdata )
             <tr>
               <td>{{$empdata->id}}</td>
               <td>{{$empdata->dpname}}</td>
@@ -48,7 +48,7 @@
       </div>
 
     </div>
-  
+
 
 </div>
 

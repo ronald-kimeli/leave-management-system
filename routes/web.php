@@ -1,9 +1,9 @@
 <?php
 
-
+use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\ApplyleaveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,26 +17,31 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about'); //Gets whats inside pages controller
-Route::get('/users/{id}/{comp}', 'PagesController@users'); 
+Route::get('/users/{id}/{comp}', 'PagesController@users');
 // Route::get('/users/{id}/{comp}', function ($id,$comp) {
 //     return 'User is:'.$id.'<br>'.'Company Name:'.$comp;
 // });
-Route::get('department', 'departmentcontroller@index');
-Route::get('add-department', 'departmentcontroller@create');
-Route::post('store-department', 'departmentcontroller@store');
-Route::get('edit_department/{id}', 'departmentcontroller@edit');
-Route::put('update-department/{id}', 'departmentcontroller@update');
-// Route::get('delete_department/{id}', 'departmentcontroller@delete');
-Route::delete('delete_department/{id}', 'departmentcontroller@delete');
+Route::get('department', 'DepartmentController@index');
+Route::get('add-department', 'DepartmentController@create');
+Route::post('store-department', 'DepartmentController@store');
+Route::get('edit_department/{id}', 'DepartmentController@edit');
+Route::put('update-department/{id}', 'DepartmentController@update');
+// Route::get('delete_department/{id}', 'DepartmentController@delete');
+Route::delete('delete_department/{id}', 'DepartmentController@delete');
 
 // Apply Leave
-Route::get('add_applyleave',[App\Http\Controllers\Admin\ApplyleaveController::class,'create']);
-Route::post('add_applyleave',[App\Http\Controllers\Admin\ApplyleaveController::class,'store']);
-Route::get('show_applyleave',[App\Http\Controllers\Admin\ApplyleaveController::class,'show']);
+Route::get('add_applyleave',[ApplyleaveController::class,'create']);
+Route::post('add_applyleave',[ApplyleaveController::class,'store']);
+Route::get('show_applyleave',[ApplyleaveController::class,'show']);
 
 
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){   //,'isAdmin'
 Route::get('/dashboard',[App\Http\Controllers\Admin\DashboardController::class,'index'])->name('admin/dashboard');
@@ -75,5 +80,4 @@ Route::delete('delete_applyleave/{id}',[App\Http\Controllers\Admin\ApplyleaveCon
  });
 
 
- 
- 
+

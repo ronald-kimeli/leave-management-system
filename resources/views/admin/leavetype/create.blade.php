@@ -23,12 +23,12 @@
 
                 <div class="form-group mb-3">
                     <label for="">Leave Type</label>
-                    <input type="text" name="leave_type" class="form-control">
+                    <input type="text" name="leave_type" class="form-control" value="{{ old('leave_type') }}">
                 </div>
 
                 <div class="col-md-3 mb-3">
                     <label for="">Status</label>
-                    <input type="checkbox" name="status">
+                    <input type="checkbox" name="status" value="{{ old('status') }}">
                 </div>
 
                 <div class="form-group col-md-6 mb-3">

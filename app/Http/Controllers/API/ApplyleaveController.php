@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Applyleave;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ApplyleaveController extends Controller
 {
@@ -29,7 +30,22 @@ class ApplyleaveController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'leave_type_id'=> 'required',
+            'description' => 'required',
+            'leave_from' => 'required',
+            'leave_to' => 'required'
+        ]);
+
+        $data = new Applyleave;
+        $data->user_id = Auth::user()->id;
+        $data->leave_type_id = $request->input('leave_type_id');
+        $data->description = $request->input('description');
+        $data->leave_from = $request->input('leave_from');
+        $data->leave_to = $request->input('leave_to');
+        $data->save();
+
+        return response()->json(['message'=>'Leave successfully received and is being processed'],200);
     }
 
     /**
@@ -43,13 +59,13 @@ class ApplyleaveController extends Controller
         $applyleave = Applyleave::find($id);
         if($applyleave)
         {
-            return response()->json(['applyleave'=>$applyleave],200);  
+            return response()->json(['applyleave'=>$applyleave],200);
         }
         else
         {
             return response()->json(['message'=>'No Leave Applied'],404);
         }
-        
+
     }
 
     /**

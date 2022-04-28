@@ -56,7 +56,7 @@
                                 </span>
                                 @enderror
                             </div>
-                        </div>       
+                        </div>
 
                         <div class="row mb-3">
                             <label for="phone" class="col-md-4 col-form-label text-md-end">{{ __('Phone Number') }}</label>
@@ -92,11 +92,11 @@
                             <div class="col-md-6">
                                  <select id="department_id" type="text" class="form-control rounded-pill @error('department_id') is-invalid @enderror" name="department_id" value="{{ old('department_id') }}" required autocomplete="department_id" autofocus>
                                      <option value="">--Select Department--</option>
-                                     @if($department)
-                                     @foreach($department as $use)
-                                     <option value="{{$use->id}}" {{$use->dpname == '$use->dpname' ? 'selected' : ''  }}>{{$use->dpname}}</option>
-                                     @endforeach
-                                    @endif
+                                     @if($departments)
+                                        @foreach($departments as $use)
+                                        <option value="{{$use->id}}" {{$use->dpname == '$use->dpname' ? 'selected' : ''  }}>{{$use->dpname}}</option>
+                                        @endforeach
+                                     @endif
                                  </select>
                                 @error('department_id')
                                 <span class="invalid-feedback" role="alert">
