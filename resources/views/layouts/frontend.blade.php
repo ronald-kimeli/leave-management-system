@@ -23,14 +23,14 @@
         body {
             background: #555655 !important;
         }
-
+/* 
         a.navbar-brand {
             margin-left: -100px !important;
         }
 
         #navbarSupportedContent {
             margin-right: -100px !important;
-        }
+        } */
 
         .dataTables_wrapper .dataTables_paginate .paginate_button {
             padding: 0px !important;

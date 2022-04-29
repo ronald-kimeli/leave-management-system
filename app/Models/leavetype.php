@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Applyleave;
 
-class leavetype extends Model
+class Leavetype extends Model
 {
     use HasFactory;
 
@@ -16,5 +16,9 @@ class leavetype extends Model
     } 
 
     protected $table = 'leavetypes';
-    protected $fillable = ['leave_type'];
+    protected $fillable = [
+        'leave_type',
+        'status'
+];
+
 }

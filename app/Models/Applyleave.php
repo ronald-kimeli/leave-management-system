@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\leavetype;
+use App\Models\Leavetype;
 use App\Models\User;
 
 class Applyleave extends Model
@@ -13,7 +13,7 @@ class Applyleave extends Model
 
     public function leavetype()
     {
-        return $this->belongsTo(leavetype::class,'leave_type_id');
+        return $this->belongsTo(Leavetype::class,'leave_type_id');
     }
     public function User()
     {

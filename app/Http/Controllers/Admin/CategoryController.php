@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CategoryFormRequest;
-use App\Models\category;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $category = category::all();
+        $category = Category::all();
        return view('admin.category.index',compact('category')); 
     }
     public function create()
@@ -25,7 +25,7 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        $category = new category;
+        $category = new Category;
         $category->name = $data['name'];
         $category->slug = $data['slug'];
         $category->description = $data['description'];
@@ -59,7 +59,7 @@ class CategoryController extends Controller
     {
         $data = $request->validated();
 
-        $category =  category::find($category_id);
+        $category =  Category::find($category_id);
         $category->name = $data['name'];
         $category->slug = $data['slug'];
         $category->description = $data['description'];
@@ -91,7 +91,7 @@ class CategoryController extends Controller
     }
     public function delete($category_id)
     {
-      $category = category::find($category_id);
+      $category = Category::find($category_id);
       If($category)
       {
         $destination = 'uploads/category/'.$category->image;

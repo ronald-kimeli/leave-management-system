@@ -22,7 +22,7 @@
     <div class="card col-md-12 shadow">
       <div class="card-header">
         <h4>View Applied Leave
-          <a href="{{url('admin/add_applyleave')}}" class="btn btn-primary btn-sm float-end">Add apply leave</a>
+          <!-- <a href="{{url('admin/add_applyleave')}}" class="btn btn-primary btn-sm float-end">Add apply leave</a> -->
         </h4>
       </div>
       <div class="card-body table-responsive">
@@ -113,7 +113,7 @@
                 ?>
               </td>
               <td>
-                <a href="{{url('admin/edit_applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Edit</a>
+                <a href="{{url('admin/edit_applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
               </td>
               <td>
                 <!--  //first method -->

@@ -2,9 +2,9 @@
 @section('title', 'Users')
 @section('content')
 
-<div class="container table-responsive py-5">
+<div class="container  py-5">
 
-  @if(session('status'))
+  <!-- @if(session('status'))
   <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
   <script>
     swal({
@@ -16,13 +16,14 @@
       window.location.reload();
     })
   </script>
-  @endif
+  @endif -->
   
     
-      <div class="card col-md-8 shadow offset-2">
+      <div class="card col-md-12 shadow">
         <div class="card-header">
           <h4 class="m-0 font-weight-bold text-dark">
               View Users
+              <a href="{{url('admin/add/user')}}" class="btn btn-danger float-end">Add User</a>
           </h4>
         </div>
         <div class="card-body table-responsive">
@@ -33,6 +34,9 @@
                 <th>First_Name</th>
                 <th>Last_Name</th>
                 <th>Email</th>
+                <th>Gender</th>
+                <th>Phone</th>
+                <th>Department</th>
                 <th>Role</th>
                 <th>Edit</th>
               </tr>
@@ -44,6 +48,9 @@
                 <td>{{$item->name}}</td>
                 <td>{{$item->last_name}}</td>
                 <td>{{$item->email}}</td>
+                <td>{{$item->gender}}</td>
+                <td>{{$item->phone}}</td>
+                <td>{{$item->department->dpname}}</td>
                 <td>{{$item->role_as == '1' ? 'Admin' : 'User' }}</td>
                 <td>
                   <a href="{{url('admin/edit_user/'.$item->id)}}" class="btn btn-success">Edit</a>

@@ -92,8 +92,8 @@
                             <div class="col-md-6">
                                  <select id="department_id" type="text" class="form-control rounded-pill @error('department_id') is-invalid @enderror" name="department_id" value="{{ old('department_id') }}" required autocomplete="department_id" autofocus>
                                      <option value="">--Select Department--</option>
-                                     @if($department)
-                                     @foreach($department as $use)
+                                     @if($departments)
+                                     @foreach($departments as $use)
                                      <option value="{{$use->id}}" {{$use->dpname == '$use->dpname' ? 'selected' : ''  }}>{{$use->dpname}}</option>
                                      @endforeach
                                     @endif

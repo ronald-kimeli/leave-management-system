@@ -55,12 +55,19 @@
                                 Department
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                            <!-- end department -->
-                           
+
                            <!-- users -->
-                           <a class="nav-link" href="{{ url('admin/users')}}">
+                           <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#users" aria-expanded="false" aria-controls="collapseLayouts">
                                 <div class="sb-nav-link-icon"><i class="fa fa-user fa-fw"></i></div>
                                 Users
+                                <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
                             </a>
+                            <div class="collapse" id="users" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
+                                <nav class="sb-sidenav-menu-nested nav">
+                                    <a class="nav-link" href="{{ url('admin/users')}}">View Users</a>
+                                    <a class="nav-link" href="{{ url('admin/add/user')}}">Add User</a>
+                                    </nav>
+                            </div>
                             <!--  -->
                             <div class="sb-sidenav-menu-heading">Addons</div>
                             <a class="nav-link" href="charts.html">

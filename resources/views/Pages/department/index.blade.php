@@ -24,7 +24,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($department as $empdata )
+            @foreach($departments as $empdata )
             <tr>
               <td>{{$empdata->id}}</td>
               <td>{{$empdata->dpname}}</td>

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Applyleave;
-use App\Models\leavetype;
+use App\Models\Leavetype;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -29,7 +29,7 @@ class ApplyleaveController extends Controller
     public function create()
     {
         $users = User::all();
-        $leavetype = leavetype::all();
+        $leavetype = Leavetype::all();
         return view('Pages.Applyleave.create',['users'=>$users],['leavetype'=>$leavetype]);
     }
 

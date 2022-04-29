@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\department;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
-class departmentcontroller extends Controller
+class DepartmentController extends Controller
 {
   public function index() 
   {
-     $department = department::all();  
-      return view('Pages.department.index',compact('department'));
+     $departments = Department::all();  
+      return view('Pages.department.index',compact('departments'));
   } 
   public function create()
   {
@@ -21,7 +21,7 @@ class departmentcontroller extends Controller
   $request->validate([
     'dpname' => 'required'
 ]);
-  $department = new department;
+  $department = new Department;
   $department->dpname = $request->input('dpname');
   $department->save();
 
@@ -30,7 +30,7 @@ class departmentcontroller extends Controller
 }
 public function edit($id)
 {
-  $department = department::find($id);
+  $department = Department::find($id);
   return view('Pages.department.edit', compact('department')); 
 }
 public function update(Request $request, $id)
@@ -39,7 +39,7 @@ public function update(Request $request, $id)
     'dpname' => 'required',
     'status' => 'nullable'
 ]);
-  $department = department::find($id);
+  $department = Department::find($id);
   $department->dpname = $request->input('dpname');
   $department->status = $request->input('status') == true ? '1':'0';
   $department->update();
@@ -48,7 +48,7 @@ public function update(Request $request, $id)
 }
 public function delete($id)
 {
-  $department = department::find($id);
+  $department = Department::find($id);
   $department->delete();
   return redirect('department')->with(['status'=>'Deleted Successfully','status_code'=>'success']);
 

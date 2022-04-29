@@ -18,6 +18,7 @@ Route::middleware(['auth:sanctum'])->prefix('v1')->group(function ()
 Route::post('logout',[AuthController::class,'logout']);
 // Applyleave Routes
 Route::get('leaves',[ApplyleaveController::class,'index']);
+Route::post('leave/apply',[ApplyleaveController::class,'store']);
 Route::get('leave/{id}/show',[ApplyleaveController::class,'show']);
 //Product Routes  
 Route::get('products',[ProductController::class,'index']);

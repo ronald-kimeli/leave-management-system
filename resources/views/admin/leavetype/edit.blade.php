@@ -28,10 +28,10 @@
                 </div>
 
                 <div class="col-md-3 mb-3">
-                    <label for="">Status</label>
+                    <label for="">Approve</label>
                     <select name="status" class="selectpicker form-control">
                         <option value="0" {{ $leavetype->status == '0' ? 'selected':'' }}>Waiting Approval</option>
-                        <option value="1" {{ $leavetype->status == '1' ? 'selected':'' }}>Approve</option>          
+                        <option value="1" {{ $leavetype->status == '1' ? 'selected':'' }}>Approved</option>          
                     </select> 
                 </div>
 

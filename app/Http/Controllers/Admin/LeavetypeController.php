@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\leavetype;
+use App\Models\Leavetype;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
@@ -11,7 +11,7 @@ class LeavetypeController extends Controller
 {
     public function index()
     {
-        $leavetype = leavetype::all();  // declare and import
+        $leavetype = Leavetype::all();  // declare and import
         return view('admin.leavetype.index', compact('leavetype'));
     }
     public function create()
@@ -21,19 +21,17 @@ class LeavetypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'leave_type' => 'required',
-            'status' => 'required'
+            'leave_type' => 'required'
         ]);
-        $leavetype = new leavetype;
+        $leavetype = new Leavetype;
         $leavetype->leave_type = $request->input('leave_type');
-        $leavetype->status = $request->status == true ? '1' : '0';
         $leavetype->save();
 
         return redirect('admin/leavetype')->with(['status' => 'Leave Type Added Successfully', 'status_code' => 'success']);
     }
     public function edit($id)
     {
-        $leavetype = leavetype::find($id);
+        $leavetype = Leavetype::find($id);
         return view('admin.leavetype.edit', compact('leavetype'));
     }
     public function update(Request $request, $id)
@@ -42,7 +40,7 @@ class LeavetypeController extends Controller
             'leave_type' => 'required',
             'status' => 'required'
         ]);
-        $leavetype = leavetype::find($id);
+        $leavetype = Leavetype::find($id);
         $leavetype->leave_type = $request->input('leave_type');
         $leavetype->status = $request->input('status') == true ? '1' : '0';
         $leavetype->update();
@@ -51,7 +49,7 @@ class LeavetypeController extends Controller
     }
     public function delete($id)
     {
-        $leavetype = leavetype::find($id);
+        $leavetype = Leavetype::find($id);
         $leavetype->delete();
         return redirect('admin/leavetype')->with(['status' => 'Deleted Successfully', 'status_code' => 'success']);
     }

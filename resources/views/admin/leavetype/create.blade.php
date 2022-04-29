@@ -23,16 +23,16 @@
 
                 <div class="form-group mb-3">
                     <label for="">Leave Type</label>
-                    <input type="text" name="leave_type" class="form-control">
+                    <input type="text" name="leave_type" class="form-control"  value="{{ old('leave_type') }}">
                 </div>
 
-                <div class="col-md-3 mb-3">
-                    <label for="">Status</label>
-                    <input type="checkbox" name="status">
-                </div>
+                <!-- <div class="col-md-3 mb-3">
+                    <label for="">Approve</label> // No need of approval while creating Leavetype
+                    <input type="checkbox" name="status" value="{{ old('status') }}">
+                </div> -->
 
                 <div class="form-group col-md-6 mb-3">
-                    <button type="submit" class="btn btn-primary">Save Leave</button>
+                    <button type="submit" class="btn btn-primary">ADD</button>
                 </div>
 
             </form>
