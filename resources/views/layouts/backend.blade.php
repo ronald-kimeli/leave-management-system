@@ -81,7 +81,9 @@
             text: "",
             icon: "{{session('status_code')}}",
             button: "Ok!",
-        });
+        }).then(function() {
+            window.location.reload();
+        })
     </script>
     @endif
 

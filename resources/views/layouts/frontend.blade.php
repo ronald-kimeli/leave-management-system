@@ -23,7 +23,8 @@
         body {
             background: #555655 !important;
         }
-/* 
+
+        /* 
         a.navbar-brand {
             margin-left: -100px !important;
         }
@@ -64,7 +65,7 @@
 
     <script src="{{asset('frontend/js/bootstrap5.bundle.js')}}"></script>
     <script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
-    
+
     @if(session('status'))
     <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
     <script>
@@ -73,10 +74,14 @@
             text: "",
             icon: "{{session('status_code')}}",
             button: "Ok!",
-        });
+        }).then(function() {
+            window.location.reload();
+        })
     </script>
 
     @endif
+
+
 
     <!-- summernote js -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
