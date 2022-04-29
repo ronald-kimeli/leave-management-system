@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
 {
-  public function index() 
+  public function index()
   {
+<<<<<<< HEAD
      $departments = Department::all();  
       return view('Pages.department.index',compact('departments'));
   } 
+=======
+     $departments = Department::all();
+      return view('Pages.department.index',compact('departments'));
+  }
+>>>>>>> bfaa03a491f4bf5a7df14ecb1d37c0c1af81e3b1
   public function create()
   {
     return view('Pages.department.create');
@@ -31,7 +37,11 @@ class DepartmentController extends Controller
 public function edit($id)
 {
   $department = Department::find($id);
+<<<<<<< HEAD
   return view('Pages.department.edit', compact('department')); 
+=======
+  return view('Pages.department.edit', compact('department'));
+>>>>>>> bfaa03a491f4bf5a7df14ecb1d37c0c1af81e3b1
 }
 public function update(Request $request, $id)
 {
@@ -52,7 +62,7 @@ public function delete($id)
   $department->delete();
   return redirect('department')->with(['status'=>'Deleted Successfully','status_code'=>'success']);
 
-  
+
 }
 
 

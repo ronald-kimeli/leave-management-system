@@ -46,12 +46,12 @@ class AuthController extends Controller
             return response($response,200);
     }
     public function logout()
-    {    
+    {
         auth()->user()->tokens()->delete();
         return response(['message'=>'Successfully logged out'],200);
     }
-    
-       
+
+
         public function login(Request $request)
             {
                 $data = $request->validate([
@@ -60,23 +60,23 @@ class AuthController extends Controller
                     ]);
              //Check email
                     $user = User::where('email',$data['email'])->first();
-                    
-                    if (! $user || ! Hash::check($data['password'], $user->password)) 
+
+                    if (! $user || ! Hash::check($data['password'], $user->password))
                     {
                         return response(['message'=>'Invalid Credentials'],401);
                     }
-                
+
                         $token = $user->createToken('leaveLogin')->plainTextToken;
 
                         $response =[
                             'user' => $user,
                             'token' => $token
                         ];
-    
-                        return response($response,200);
-                    
 
-                   
+                        return response($response,200);
+
+
+
             }
 
 }

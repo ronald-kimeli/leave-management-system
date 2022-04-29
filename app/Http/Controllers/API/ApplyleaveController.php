@@ -59,13 +59,13 @@ class ApplyleaveController extends Controller
         $applyleave = Applyleave::find($id);
         if($applyleave)
         {
-            return response()->json(['applyleave'=>$applyleave],200);  
+            return response()->json(['applyleave'=>$applyleave],200);
         }
         else
         {
             return response()->json(['message'=>'No Leave Applied'],404);
         }
-        
+
     }
 
     /**

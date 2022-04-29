@@ -13,7 +13,7 @@ class Leavetype extends Model
     public function Applyleave()
     {
         return $this->hasMany(Applyleave::class);
-    } 
+    }
 
     protected $table = 'leavetypes';
     protected $fillable = [

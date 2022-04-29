@@ -8,7 +8,7 @@
                     <div class="card-header bg-info">
                     <center><h4>Leave Application Form
                     <a href="{{url('/')}}" class="btn btn-danger btn-sm float-end rounded-pill">Cancel</a>
-                    </h4></center> 
+                    </h4></center>
                     </div>
                     <div class="card-body bg-gray ">
                         @if(session('status'))
@@ -50,9 +50,9 @@
 
                                         @if($users)
                                         @foreach($users as $person)
-                                        
+
                                         <option value="{{$person->id}}"@if($person->name.' '.$person->last_name== Auth::user()->name.' '.Auth::user()->last_name) selected @endif > {{$person->name.' '.$person->last_name}} </option>
-                                        
+
                                         @endforeach
                                         @endif
                                     </select>

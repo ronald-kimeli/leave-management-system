@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container py-5">
-  
+
     <div class="card col-md-8 shadow offset-2">
       @include('Pages.department.message')
       <div class="card-header text-center">
@@ -48,7 +48,7 @@
       </div>
 
     </div>
-  
+
 
 </div>
 

@@ -12,10 +12,10 @@ class Department extends Model
     public function User()
     {
         return $this->hasMany(User::class);
-    }  
+    }
 
     protected $table = 'departments';
     protected $fillable = ['dpname'];
-     
-   
+
+
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Admin\ApplyleaveController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LeavetypeController;
@@ -8,7 +7,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\ApplyleaveController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about'); //Gets whats inside pages controller
-Route::get('/users/{id}/{comp}', 'PagesController@users'); 
+Route::get('/users/{id}/{comp}', 'PagesController@users');
 // Route::get('/users/{id}/{comp}', function ($id,$comp) {
 //     return 'User is:'.$id.'<br>'.'Company Name:'.$comp;
 // });
@@ -42,6 +41,11 @@ Route::get('show_applyleave',[ApplyleaveController::class,'show']);
 
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+
+Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
+Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){   //,'isAdmin'
 Route::get('/dashboard',[DashboardController::class,'index'])->name('admin/dashboard');
@@ -82,5 +86,4 @@ Route::delete('delete_applyleave/{id}',[ApplyleaveController::class,'delete']);
  });
 
 
- 
- 
+

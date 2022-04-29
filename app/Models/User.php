@@ -12,9 +12,6 @@ use App\Models\Department;
 use App\Models\Applyleave;
 
 
-
-
-
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
@@ -34,7 +31,7 @@ class User extends Authenticatable
     }
   //,'department_id'
 
-  //   should be available on  
+  //   should be available on
   //$table->Integer('department_id');
            // Removed from add_department_id_to_users_table --table=users
         //$table->unsignedInteger('department_id')->nullable();
@@ -53,8 +50,7 @@ class User extends Authenticatable
         'password',
     ];
 
-   
-  
+
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -75,7 +71,7 @@ class User extends Authenticatable
         'created_at' => 'datetime',
     ];
 
-    
-  
+
+
 }
 

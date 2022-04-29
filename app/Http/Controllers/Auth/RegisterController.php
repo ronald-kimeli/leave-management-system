@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Department;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-
+// use Departmen
 
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Validator;
 class RegisterController extends Controller
 {
 
-     
+
     /*
     |--------------------------------------------------------------------------
     | Register Controller
@@ -75,26 +76,27 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-   
-   
-    protected function create(array $data)
-    {
-     
 
-        return User::create([
-            'department_id' => $data['department_id'],
-            'name' => $data['name'],
-            'last_name' => $data['last_name'],
-            'gender' => $data['gender'],
-            'phone' => $data['phone'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ],);
-       
+    protected function store($data) {
+    return User::create([
+        'department_id' => $data['department_id'],
+        'name' => $data['name'],
+        'last_name' => $data['last_name'],
+        'gender' => $data['gender'],
+        'phone' => $data['phone'],
+        'email' => $data['email'],
+        'password' => Hash::make($data['password']),
+    ],);
+}
+    public function create()
+    {
+        $departments = Department::all();
+        return view('auth.register', compact('departments'));
+
     }
 
 
-  
 
-   
+
+
 }

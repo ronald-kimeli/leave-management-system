@@ -12,15 +12,15 @@ Route::post('register',[AuthController::class, 'register']);
 Route::post('login',[AuthController::class, 'login']);
 
 //Protected Routes
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () 
+Route::middleware(['auth:sanctum'])->prefix('v1')->group(function ()
 {
     //User Route
-Route::post('logout',[AuthController::class,'logout']);
+Route::post('logout',[AuthController::class, 'logout']);
 // Applyleave Routes
 Route::get('leaves',[ApplyleaveController::class,'index']);
 Route::post('leave/apply',[ApplyleaveController::class,'store']);
 Route::get('leave/{id}/show',[ApplyleaveController::class,'show']);
-//Product Routes  
+//Product Routes
 Route::get('products',[ProductController::class,'index']);
 Route::get('product/{id}/show',[ProductController::class,'show']);
 Route::put('product/{id}/update',[ProductController::class,'update']);
