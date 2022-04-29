@@ -8,6 +8,8 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ApplyleaveController;
+use App\Http\Controllers\DepartmentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,13 +27,16 @@ Route::get('/users/{id}/{comp}', 'PagesController@users');
 // Route::get('/users/{id}/{comp}', function ($id,$comp) {
 //     return 'User is:'.$id.'<br>'.'Company Name:'.$comp;
 // });
-Route::get('department', 'Departmentcontroller@index');
-Route::get('add-department', 'Departmentcontroller@create');
-Route::post('store-department', 'Departmentcontroller@store');
-Route::get('edit_department/{id}', 'Departmentcontroller@edit');
-Route::put('update-department/{id}', 'Departmentcontroller@update');
-// Route::get('delete_department/{id}', 'departmentcontroller@delete');
-Route::delete('delete_department/{id}', 'Departmentcontroller@delete');
+
+// Department Routes inside admin
+Route::get('departments',[DepartmentController::class,'index']);
+Route::get('add/department',[DepartmentController::class,'create']);
+Route::post('store/department',[DepartmentController::class,'store']);
+Route::get('edit/department/{id}',[DepartmentController::class,'edit']);
+Route::put('update/department/{id}',[DepartmentController::class,'update']);
+// Route::get('delete_department/{id}', 'departmentcontroller@delete']);
+Route::delete('delete/department/{id}',[DepartmentController::class,'delete']);
+
 
 // Apply Leave
 Route::get('add_applyleave',[ApplyleaveController::class,'create']);
@@ -74,6 +79,8 @@ Route::delete('delete_leavetype/{id}',[LeavetypeController::class,'delete']);
  Route::put('update_user/{user_id}',[UserController::class,'update']);
   // Leave Types Routes
 Route::get('applyleave',[ApplyleaveController::class,'index']);
+Route::get('add/applyleave',[ApplyleaveController::class,'_create']);
+Route::post('add/applyleave',[ApplyleaveController::class,'register']);
 
 
 // Route::get('add_applyleave',[App\Http\Controllers\Admin\ApplyleaveController::class,'create']);

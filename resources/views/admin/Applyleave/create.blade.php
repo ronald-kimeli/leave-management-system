@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header bg-info">
                     <center><h4>Leave Application Form
-                    <a href="{{url('/')}}" class="btn btn-danger btn-sm float-end rounded-pill">Cancel</a>
+                    <a href="{{url('admin/applyleave')}}" class="btn btn-danger btn-sm float-end rounded-pill">Back</a>
                     </h4></center> 
                     </div>
                     <div class="card-body bg-gray ">
@@ -32,7 +32,7 @@
                             @endforeach
                         </div>
                         @endif
-                        <form action="{{url('add_applyleave')}}" method="POST">
+                        <form action="{{url('admin/add/applyleave')}}" method="POST">
                             @csrf
                             <!-- start Heading-->
                             <div class="row mb-3">
@@ -43,10 +43,10 @@
                             </div>
                             <!-- end -->
                             <!-- start User_id visually-hidden-->
-                            <div class="row mb-3 visually-hidden">
-                                <label for="" class="col-md-4 col-form-label text-md-end">{{ __('User_Id:') }}</label>
+                            <div class="row mb-3">
+                                <label for="" class="col-md-4 col-form-label text-md-end">Select User</label>
                                 <div class="col-md-6">
-                                <select type="int" class="form-control rounded-pill" name="user_id" required autocomplete="user_id" autofocus>
+                                <select type="int" class="form-control" name="user_id" required autocomplete="user_id" autofocus>
 
                                         @if($users)
                                         @foreach($users as $person)
@@ -64,7 +64,7 @@
                             <div class="row mb-3">
                                 <label for="" class="col-md-4 col-form-label text-md-end">{{ __('Leave_Type:') }}</label>
                                 <div class="col-md-6">
-                                    <select type="int" class="form-control rounded-pill" name="leave_type_id" required autocomplete="leave_type_id" autofocus>
+                                    <select type="int" class="form-control" name="leave_type_id" required autocomplete="leave_type_id" autofocus>
                                         <option value="">--Select Leave_Type--</option>
                                         @if($leavetype)
                                         @foreach($leavetype as $use)

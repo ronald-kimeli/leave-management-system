@@ -5,7 +5,7 @@
     <div class="card col-md-6 shadow offset-3">
         <div class="card-header">
             <h4>Edit Department
-                <a href="{{url('department')}}" class="btn btn-danger btn-sm float-end rounded-pill"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Back</a>
+                <a href="{{url('departments')}}" class="btn btn-danger btn-sm float-end rounded-pill"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Back</a>
             </h4>
         </div>
         <div class="card-body">
@@ -18,7 +18,7 @@
             </div>
             @endif
 
-            <form action="{{url('update-department/'.$department->id)}}" method="POST">
+            <form action="{{url('update/department/'.$department->id)}}" method="POST">
                 @csrf
                 @method('PUT')
 

@@ -6,7 +6,7 @@
     <div class="card col-md-6 shadow offset-3">
         <div class="card-header">
             <h4>Add Department
-                <a href="{{url('department')}}" class="btn btn-danger float-end">BACK</a>
+                <a href="{{url('departments')}}" class="btn btn-danger float-end">BACK</a>
             </h4>
         </div>
         <div class="card-body">
@@ -17,7 +17,7 @@
                 @endforeach
             </div>
             @endif
-            <form action="{{url('store-department')}}" method="POST">
+            <form action="{{url('store/department')}}" method="POST">
                 @csrf
 
                 <div class="form-group mb-3">

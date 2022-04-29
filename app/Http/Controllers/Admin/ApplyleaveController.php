@@ -33,12 +33,40 @@ class ApplyleaveController extends Controller
         return view('Pages.Applyleave.create',['users'=>$users],['leavetype'=>$leavetype]);
     }
 
+    public function _create()
+    {
+        $users = User::all();
+        $leavetype = Leavetype::all();
+        return view('admin.Applyleave.create',['users'=>$users],['leavetype'=>$leavetype]); 
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function register(Request $request)
+    {
+        $request->validate([
+            'user_id'=> 'required',
+            'leave_type_id'=> 'required',
+            'description' => 'required',
+            'leave_from' => 'required',
+            'leave_to' => 'required'
+        ]);
+
+        $data = new Applyleave;
+        $data->user_id = $request->input('user_id');
+        $data->leave_type_id = $request->input('leave_type_id');
+        $data->description = $request->input('description');
+        $data->leave_from = $request->input('leave_from');
+        $data->leave_to = $request->input('leave_to');
+        $data->save();
+
+        return redirect('admin/add/applyleave')->with(['status' => 'Leave Applied Successfully', 'status_code' => 'success']);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
