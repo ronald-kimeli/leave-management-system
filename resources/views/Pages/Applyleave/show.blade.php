@@ -1,57 +1,44 @@
 @extends('layouts.frontend')
 
 @section('content')
-<div class="container">
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card border-rounded shadow">
+        <div class="card-header bg-info">
+          <h4>Leave Status
+            <a href="{{url('/')}}" class="btn btn-danger btn-sm float-end rounded-pill">Exit</a>
+          </h4>
+        </div>
+        <div class="card-body table-responsive">
 
-  <div class="col-md-12">
-    <div class="card border-rounded shadow offset-1">
-      <div class="card-header bg-info">
-        <h4>Leave Status
-          <a href="{{url('add_applyleave')}}" class="btn btn-danger btn-sm float-end rounded-pill">Exit</a>
-        </h4>
-      </div>
-      <div class="card-body table-responsive">
-
-        @if(session('status'))
-        <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
-        <script>
-          swal({
-            title: "{{session('status')}}",
-            text: "",
-            icon: "{{session('status_code')}}",
-            button: "Ok!",
-          }).then(function() {
-            window.location.reload();
-          })
-        </script>
-        @endif
-
-        <table id="mydataTable" class="table table-striped table-bordered " class="display nowrap" style="width:100%">
-          <thead>
-            <tr>
-              <!-- I should comment this out cause already its the auth user <th>User_Id</th> -->
-              <th>User_Id</th>
-              <th>Leave_Type</th>
-              <th>Leave_From</th>
-              <th>Leave_To</th>
-              <th>Applied At</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($data as $item )
-            @if($item->user_id == Auth::user()->id)
-            <tr>
-              <!--Remember that we had r/ship btw leave and leavetype hence i pass $item->leavetype->leave_type as if i was inside leave type instead of showing $item->leave_type_id to display name instead of id <td>{{$item->user_id}}</td> -->
-              <td>{{$item->User->name.' '.$item->User->last_name}}</td>
-              <td>{{$item->leavetype->leave_type}}</td>
-              <td>{{$item->leave_from}}</td>
-              <td>{{$item->leave_to}}</td>
-              <td>{{$item->created_at}}</td>
-              <td>
-                <?php
-                if ($item->status == '0') {
-                  echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+          <table id="mydataTable" class="table table-striped table-bordered" class="display nowrap" style="width:100%">
+            <thead>
+              <tr>
+                <!-- I should comment this out cause already its the auth user <th>User_Id</th> -->
+                <th>User_Id</th>
+                <th>Leave_Type</th>
+                <th>Leave_From</th>
+                <th>Leave_To</th>
+                <th>Applied At</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody>
+      
+              @foreach($data as $item )
+              @if($item->user_id == Auth::user()->id)
+              <tr>
+                <!--Remember that we had r/ship btw leave and leavetype hence i pass $item->leavetype->leave_type as if i was inside leave type instead of showing $item->leave_type_id to display name instead of id <td>{{$item->user_id}}</td> -->
+                <td>{{$item->User->name.' '.$item->User->last_name}}</td>
+                <td>{{$item->leavetype->leave_type}}</td>
+                <td>{{$item->leave_from}}</td>
+                <td>{{$item->leave_to}}</td>
+                <td>{{$item->created_at}}</td>
+                <td>
+                  <?php
+                  if ($item->status == '0') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                        </symbol>
@@ -68,9 +55,9 @@
                                         <b>Pending</b>
                                         </div>
                                         </div>';
-                }
-                if ($item->status == '1') {
-                  echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  }
+                  if ($item->status == '1') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                         </symbol>
@@ -87,9 +74,9 @@
                                         <b>Accepted</b>
                                         </div>
                                         </div>';
-                }
-                if ($item->status == '2') {
-                  echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  }
+                  if ($item->status == '2') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                         </symbol>
@@ -106,19 +93,19 @@
                                          <b>Rejected</b>
                                         </div>
                                         </div>';
-                }
-                ?>
-              </td>
-            </tr>
+                  }
+                  ?>
+                </td>
+              </tr>
 
-            @endif
-            @endforeach
+              @endif
+              @endforeach
 
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
-
 </div>
 @endsection

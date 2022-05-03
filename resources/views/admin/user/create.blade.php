@@ -7,7 +7,7 @@
         <div class="col-md-12">
         <div class="card shadow">
             <div class="card-header">
-                <h4>Add Leave Type
+                <h4>Add User
                     <a href="{{url('admin/users')}}" class="btn btn-danger float-end">BACK</a>
                 </h4>
             </div>
@@ -25,7 +25,7 @@
 
 
                     <div class="form-group mb-3">
-                        <label for="">Name</label>
+                        <label for="">Name:</label>
                         <input type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
                     </div>
 

@@ -47,10 +47,10 @@ Route::get('show_applyleave',[ApplyleaveController::class,'show']);
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
+// Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
-Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
-Route::post('/register', [RegisterController::class, 'store'])->name('register');
+// Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
+// Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){   //,'isAdmin'
 Route::get('/dashboard',[DashboardController::class,'index'])->name('admin/dashboard');
@@ -77,6 +77,9 @@ Route::delete('delete_leavetype/{id}',[LeavetypeController::class,'delete']);
  Route::post('add/user',[UserController::class,'store']);
  Route::get('edit_user/{user_id}',[UserController::class,'edit']);
  Route::put('update_user/{user_id}',[UserController::class,'update']);
+//  Don't Integrate delete User. It brings error when trying to access leaves, especially when he/she had applied for leave
+ //Route::delete('delete/user/{user_id}',[UserController::class,'destroy']);
+ 
   // Leave Types Routes
 Route::get('applyleave',[ApplyleaveController::class,'index']);
 Route::get('add/applyleave',[ApplyleaveController::class,'_create']);

@@ -1,31 +1,18 @@
 @extends('layouts.backend')
-@section('title', 'Leave type')
+@section('title', 'Leave Type')
 @section('content')
 
 <div class="container py-5">
-
-  @if(session('status'))
-  <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
-  <script>
-    swal({
-      title: "{{session('status')}}",
-      text: "",
-      icon: "{{session('status_code')}}",
-      button: "Ok!",
-    }).then(function() {
-      window.location.reload();
-    })
-  </script>
-  @endif
-  
-      <div class="card col-md-8 shadow offset-2">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow ">
         <div class="card-header">
-          <h4>View Leave type
-            <a href="{{url('admin/add_leavetype')}}" class="btn btn-primary btn-sm float-end">Add Leave type</a>
+          <h4>Leave Type
+            <a href="{{url('admin/add_leavetype')}}" class="btn btn-primary btn-sm float-end">Add Leave Type</a>
           </h4>
         </div>
         <div class="card-body table-responsive">
-        <table id="mydataTable" class="table table-striped table-bordered " class="display nowrap" style="width:100%">
+          <table id="mydataTable" class="table table-striped table-bordered " class="display nowrap" style="width:100%">
             <thead>
               <tr>
                 <th>ID</th>
@@ -58,9 +45,10 @@
             </tbody>
           </table>
         </div>
-        
+
       </div>
-   
+    </div>
+  </div>
 </div>
 
 @endsection

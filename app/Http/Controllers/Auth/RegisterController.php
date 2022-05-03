@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Department;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
-// use Departmen
+// use Department
 
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -77,7 +77,7 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
 
-    protected function store($data) {
+    protected function create(array $data){
     return User::create([
         'department_id' => $data['department_id'],
         'name' => $data['name'],
@@ -88,15 +88,4 @@ class RegisterController extends Controller
         'password' => Hash::make($data['password']),
     ],);
 }
-    public function create()
-    {
-        $departments = Department::all();
-        return view('auth.register', compact('departments'));
-
-    }
-
-
-
-
-
 }

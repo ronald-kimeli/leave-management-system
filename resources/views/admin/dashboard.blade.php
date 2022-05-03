@@ -29,7 +29,7 @@
                     <h5>{{ $departments}}</h5>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{ url('department')}}">
+                    <a class="small text-white stretched-link" href="{{ url('departments')}}">
                         View Details
                     </a>
                     <div class="small text-dark"><i class="fas fa-angle-right"></i></div>
@@ -68,10 +68,10 @@
             <div class="card bg-primary text-white mb-4">
                 <div class="card-body">
                     Total Admin
-                    <h5>{{ $leavetypes}}</h5>
+                    <h5>{{ $admins}}</h5>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{url('admin/leavetype')}}">
+                    <a class="small text-white stretched-link" href="{{url('admin/users')}}">
                         View Details
                     </a>
                     <div class="small text-dark"><i class="fas fa-angle-right"></i></div>

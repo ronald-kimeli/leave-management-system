@@ -14,7 +14,7 @@ class AddUserIdToApplyleavesTable extends Migration
     public function up()
     {
         Schema::table('applyleaves', function (Blueprint $table) {
-            $table->unsignedInteger('user_id')->references('id')->on('users');
+            $table->unsignedBigInteger('user_id')->references('id')->on('users');
         });
     }
 

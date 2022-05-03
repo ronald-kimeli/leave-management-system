@@ -1,60 +1,46 @@
 @extends('layouts.backend')
-@section('title', 'Applied Leave')
+@section('title', 'Leaves')
 @section('content')
 
 <div class="container py-5">
-
-  @if(session('status'))
-  <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
-  <script>
-    swal({
-      title: "{{session('status')}}",
-      text: "",
-      icon: "{{session('status_code')}}",
-      button: "Ok!",
-    }).then(function() {
-      window.location.reload();
-    })
-  </script>
-  @endif
-
- 
-    <div class="card col-md-12 shadow">
-      <div class="card-header">
-        <h4>View Applied Leave
-          <a href="{{url('admin/add/applyleave')}}" class="btn btn-primary btn-sm float-end">Apply Leave</a>
-        </h4>
-      </div>
-      <div class="card-body table-responsive">
-        <table id="mydataTable" class="table table-striped table-bordered " class="display nowrap" style="width:100%" >
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>User_Id</th>
-              <th>Leave_Type_Id</th>
-              <th>Description</th>
-              <th>Leave_From</th>
-              <th>Leave_To</th>
-              <th>Applied_At</th>
-              <th>Status</th>
-              <th>Edit</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody>
-            @foreach($data as $item )
-            <tr>
-              <td>{{$item->id}}</td>
-              <td>{{$item->User->name.' '.$item->User->last_name}}</td>
-              <td>{{$item->leavetype->leave_type}}</td>
-              <td>{{$item->description}}</td>
-              <td>{{$item->leave_from}}</td>
-              <td>{{$item->leave_to}}</td>
-              <td>{{$item->created_at}}</td>
-              <td>
-              <?php
-                if ($item->status == '0') {
-                  echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card shadow">
+        <div class="card-header">
+          <h4>Applied Leaves
+            <a href="{{url('admin/add/applyleave')}}" class="btn btn-primary btn-sm float-end">Apply Leave</a>
+          </h4>
+        </div>
+        <div class="card-body table-responsive">
+          <table id="mydataTable" class="table table-striped table-bordered " class="display nowrap" style="width:100%">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>User_Id</th>
+                <th>Leave_Type_Id</th>
+                <th>Description</th>
+                <th>Leave_From</th>
+                <th>Leave_To</th>
+                <th>Applied_At</th>
+                <th>Status</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($data as $item )
+              <tr>
+                <td>{{$item->id}}</td>
+                <td>{{$item->User->name.' '.$item->User->last_name}}</td>
+                <td>{{$item->leavetype->leave_type}}</td>
+                <td>{{$item->description}}</td>
+                <td>{{$item->leave_from}}</td>
+                <td>{{$item->leave_to}}</td>
+                <td>{{$item->created_at}}</td>
+                <td>
+                  <?php
+                  if ($item->status == '0') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                        <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                            <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                        </symbol>
@@ -71,9 +57,9 @@
                                         <b>Pending Update</b>
                                         </div>
                                         </div>';
-                }
-                if ($item->status == '1') {
-                  echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  }
+                  if ($item->status == '1') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                         </symbol>
@@ -90,9 +76,9 @@
                                         <b>Accepted</b>
                                         </div>
                                         </div>';
-                }
-                if ($item->status == '2') {
-                  echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  }
+                  if ($item->status == '2') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                         <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                             <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                         </symbol>
@@ -109,29 +95,31 @@
                                          <b>Rejected</b>
                                         </div>
                                         </div>';
-                }
-                ?>
-              </td>
-              <td>
-                <a href="{{url('admin/edit_applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
-              </td>
-              <td>
-                <!--  //first method -->
-                <form action="{{url('admin/delete_applyleave/'.$item->id)}}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
-                </form>
-              </td>
-            </tr>
-            @endforeach
+                  }
+                  ?>
+                </td>
+                <td>
+                  <a href="{{url('admin/edit_applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
+                </td>
+                <td>
+                  <form action="{{url('admin/delete_applyleave/'.$item->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit">Delete</button>
+                  </form>
 
-          </tbody>
-        </table>
+
+                </td>
+              </tr>
+              @endforeach
+
+            </tbody>
+          </table>
+        </div>
+
       </div>
-
     </div>
-  
+  </div>
 </div>
 
 @endsection
