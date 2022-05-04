@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use League\CommonMark\Extension\SmartPunct\EllipsesParser;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -17,7 +17,9 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
-        return response()->json(['products'=>$products],200);
+        if($products)
+            return response()->json(['products'=>$products],200);
+        return response()->json(['status'=>'error', 'message'=>'Technical error ocurred , contact administrator.'],404);
     }
 
     /**
@@ -28,12 +30,17 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'name'=> 'required|max:191',
             'description' => 'required|max:191',
             'price' => 'required|max:191',
             'quantity' => 'required|max:191'
         ]);
+
+        if ($validator->fails()) {
+            $errors = implode(" ", $validator->errors()->all());
+            return response(['status'=>'error','message'=>$errors]);
+        }
 
         $product = new Product;
         $product->name = $request->name;
@@ -42,8 +49,11 @@ class ProductController extends Controller
         $product->quantity = $request->quantity;
         $product->save();
 
-        return response()->json(['message'=>'Product Added Successfully'],200);
-        
+        if($product) {
+            return response()->json(['message'=>'Product Added Successfully'],200);
+        }
+        return response()->json(['status'=>'error', 'message'=>'Technical error ocurred , contact administrator.'],404);
+
     }
 
     /**
@@ -57,13 +67,12 @@ class ProductController extends Controller
         $products = Product::find($id);
         if($products)
         {
-            return response()->json(['products'=>$products],200);  
+            return response()->json(['products'=>$products],200);
         }
-        else
-        {
+        http://127.0.0.1:8000/api/v1/product/2/show
             return response()->json(['message'=>'No Product Found'],404);
-        }
-        
+
+
     }
 
     /**
@@ -90,14 +99,14 @@ class ProductController extends Controller
             $product->price = $request->price;
             $product->quantity = $request->quantity;
             $product->update();
-    
+
             return response()->json(['message'=>'Product updated Successfully'],200);
         }
         else
         {
-          
-            return response()->json(['message'=>'No Product Found'],404);  
-        }    
+
+            return response()->json(['message'=>'No Product Found'],404);
+        }
 
     }
 
@@ -117,7 +126,7 @@ class ProductController extends Controller
         }
         else
         {
-            return response()->json(['message'=>'No Product Found'],404); 
+            return response()->json(['message'=>'No Product Found'],404);
         }
     }
 }
