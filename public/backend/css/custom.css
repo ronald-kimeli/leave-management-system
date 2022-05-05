@@ -1,0 +1,58 @@
+/* -----------Footer section css------------ */
+#footer
+{
+    background-image: linear-gradient(to right,#a517ba, #5f1782) !important; 
+    color: #fff; 
+}
+.footer-img
+{
+    width: 100%;
+}
+.footer-box
+{
+    padding: 20px;  
+}
+.footer-box img
+{
+    width: 120px;
+    margin-bottom: 20px;
+}
+.footer-box .fa
+{
+   
+    margin-right: 8px;
+    font-size: 25px;
+    height: 50px;
+    width: 40px;
+    text-align: center;
+    padding-top: 7px;
+    border-radius: 2px;
+    background-image: linear-gradient(to left,#a517ba, #5f1782) !important;
+}
+.footer-box .form-control
+{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 25px;
+    max-width:250px ;
+}
+.footer-box .btn-primary
+{
+    box-shadow: none !important;
+    border: none;
+    border-radius: 0;
+    margin-top: 25px;
+    background-image: linear-gradient(to right,#150218, #5f1782) !important;
+}
+hr
+{
+    background-color: #fff;
+}
+.copyright
+{
+    margin-top: 0;
+    padding-bottom: 20px;
+    text-align: center;
+}
+

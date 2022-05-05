@@ -38,10 +38,10 @@ Route::put('update/department/{id}',[DepartmentController::class,'update']);
 Route::delete('delete/department/{id}',[DepartmentController::class,'delete']);
 
 
-// Apply Leave
-Route::get('add_applyleave',[ApplyleaveController::class,'create']);
-Route::post('add_applyleave',[ApplyleaveController::class,'store']);
-Route::get('show_applyleave',[ApplyleaveController::class,'show']);
+// Apply Leave on Frontend
+Route::get('add/applyleave',[ApplyleaveController::class,'create']);
+Route::post('add/applyleave',[ApplyleaveController::class,'store']);
+Route::get('show/applyleave',[ApplyleaveController::class,'show']);
 
 
 Auth::routes();
@@ -55,7 +55,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){   //,'isAdmin'
 Route::get('/dashboard',[DashboardController::class,'index'])->name('admin/dashboard');
 Route::get('category',[CategoryController::class,'index']);
-Route::get('add_category',[CategoryController::class,'create']);
+Route::get('add/category',[CategoryController::class,'create']);
 Route::post('add_category',[CategoryController::class,'store']);
 Route::get('edit_category/{category_id}',[CategoryController::class,'edit']);
 Route::put('update_category/{category_id}',[CategoryController::class,'update']);
@@ -65,11 +65,11 @@ Route::delete('delete_category/{category_id}',[CategoryController::class,'delete
 Route::get('leavetype',[LeavetypeController::class,'index']);
 
 
-Route::get('add_leavetype',[LeavetypeController::class,'create']);
-Route::post('add_leavetype',[LeavetypeController::class,'store']);
-Route::get('edit_leavetype/{id}',[LeavetypeController::class,'edit']);
-Route::put('update_leavetype/{id}',[LeavetypeController::class,'update']);
-Route::delete('delete_leavetype/{id}',[LeavetypeController::class,'delete']);
+Route::get('add/leavetype',[LeavetypeController::class,'create']);
+Route::post('add/leavetype',[LeavetypeController::class,'store']);
+Route::get('edit/leavetype/{id}',[LeavetypeController::class,'edit']);
+Route::put('update/leavetype/{id}',[LeavetypeController::class,'update']);
+Route::delete('delete/leavetype/{id}',[LeavetypeController::class,'delete']);
 
 //users inside admin panel
  Route::get('users',[UserController::class,'index']);
@@ -90,9 +90,9 @@ Route::post('add/applyleave',[ApplyleaveController::class,'register']);
 
 // Route::post('add_applyleave',[App\Http\Controllers\Admin\ApplyleaveController::class,'store']);
 
-Route::get('edit_applyleave/{id}',[ApplyleaveController::class,'edit']);
-Route::put('update_applyleave/{id}',[ApplyleaveController::class,'update']);
-Route::delete('delete_applyleave/{id}',[ApplyleaveController::class,'delete']);
+Route::get('edit/applyleave/{id}',[ApplyleaveController::class,'edit']);
+Route::put('update/applyleave/{id}',[ApplyleaveController::class,'update']);
+Route::delete('delete/applyleave/{id}',[ApplyleaveController::class,'delete']);
  });
 
 

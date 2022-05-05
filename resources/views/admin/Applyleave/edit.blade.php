@@ -21,7 +21,7 @@
                     </div>
                     @endif
 
-                    <form action="{{url('admin/update_applyleave/'.$data->id)}}" method="POST">
+                    <form action="{{url('admin/update/applyleave/'.$data->id)}}" method="POST">
                         @csrf
                         @method('PUT')
 

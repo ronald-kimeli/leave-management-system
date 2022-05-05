@@ -8,7 +8,7 @@
       <div class="card shadow ">
         <div class="card-header">
           <h4>Leave Type
-            <a href="{{url('admin/add_leavetype')}}" class="btn btn-primary btn-sm float-end">Add Leave Type</a>
+            <a href="{{url('admin/add/leavetype')}}" class="btn btn-primary btn-sm float-end">Add Leave Type</a>
           </h4>
         </div>
         <div class="card-body table-responsive">
@@ -29,11 +29,11 @@
                 <td>{{$item->leave_type}}</td>
                 <td>{{$item->status == '1' ? 'Approved' : 'Waiting Approval' }}</td>
                 <td>
-                  <a href="{{url('admin/edit_leavetype/'.$item->id)}}" class="btn btn-success">Edit</a>
+                  <a href="{{url('admin/edit/leavetype/'.$item->id)}}" class="btn btn-success">Edit</a>
                 </td>
                 <td>
                   <!--  //first method -->
-                  <form action="{{url('admin/delete_leavetype/'.$item->id)}}" method="POST">
+                  <form action="{{url('admin/delete/leavetype/'.$item->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Delete</button>

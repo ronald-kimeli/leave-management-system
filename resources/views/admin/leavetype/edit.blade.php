@@ -20,7 +20,7 @@
                         @endforeach
                     </div>
                     @endif
-                    <form action="{{url('admin/update_leavetype/'.$leavetype->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('admin/update/leavetype/'.$leavetype->id)}}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 

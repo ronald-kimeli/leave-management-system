@@ -19,7 +19,7 @@
                         @endforeach
                     </div>
                     @endif
-                    <form action="{{url('add_applyleave')}}" method="POST">
+                    <form action="{{url('add/applyleave')}}" method="POST">
                         @csrf
                         <!-- start User_id visually-hidden-->
                         <div class="form-group mb-3 visually-hidden">

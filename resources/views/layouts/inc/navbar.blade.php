@@ -33,8 +33,8 @@
                         </a>
 
                         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="{{ url('add_applyleave') }}">{{ __('Apply_Leave') }}</a></li>
-                            <li><a class="dropdown-item" href="{{ url('show_applyleave') }}">{{ __('Leave Status') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url('add/applyleave') }}">{{ __('Apply_Leave') }}</a></li>
+                            <li><a class="dropdown-item" href="{{ url('show/applyleave') }}">{{ __('Leave Status') }}</a></li>
                         </ul>
                     </li>
 

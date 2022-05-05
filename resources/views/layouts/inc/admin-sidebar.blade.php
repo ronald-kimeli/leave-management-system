@@ -29,7 +29,7 @@
                            </a>
                            <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                <nav class="sb-sidenav-menu-nested nav">
-                                   <a class="nav-link" href="{{ url('admin/add_leavetype')}}">Add Leave Type</a>
+                                   <a class="nav-link" href="{{ url('admin/add/leavetype')}}">Add Leave Type</a>
                                    <a class="nav-link" href="{{ url('admin/leavetype')}}">View Leave Type</a>
                                </nav>
                            </div>

@@ -20,7 +20,7 @@
                         @endforeach
                     </div>
                     @endif
-                    <form action="{{url('admin/add_leavetype')}}" method="POST">
+                    <form action="{{url('admin/add/leavetype')}}" method="POST">
                         @csrf
 
                         <div class="form-group mb-3">

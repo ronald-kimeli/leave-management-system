@@ -63,7 +63,7 @@ class ApplyleaveController extends Controller
         }
         else
         {
-            return response()->json(['message'=>'No Leave Applied'],404);
+            return response()->json(['message'=>'No Leave Found'],404);
         }
 
     }

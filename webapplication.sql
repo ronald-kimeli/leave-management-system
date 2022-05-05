@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 26, 2022 at 10:09 PM
+-- Generation Time: May 05, 2022 at 02:39 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -52,11 +52,15 @@ INSERT INTO `applyleaves` (`id`, `user_id`, `leave_type_id`, `description`, `lea
 (7, 4, 1, 'Maternity leave for delivery !', '2022-04-09', '2022-05-06', 1, '2022-03-28 11:54:18', '2022-04-02 09:50:25'),
 (8, 4, 1, 'Heading to work with my Child', '2022-03-31', '2022-05-23', 2, '2022-03-28 11:59:34', '2022-04-18 05:12:42'),
 (9, 5, 2, 'rtyjl', '2022-04-30', '2022-05-07', 0, '2022-03-29 06:10:29', '2022-03-29 06:10:29'),
-(10, 5, 2, 'For three good 1 year of studying to improve my specialization in the area am holding right now.', '2022-05-01', '2023-04-03', 0, '2022-04-02 04:00:14', '2022-04-02 04:00:14'),
-(11, 5, 1, 'axcvgm', '2022-04-12', '2022-04-30', 0, '2022-04-02 04:01:40', '2022-04-02 04:01:40'),
+(10, 5, 2, 'For three good 1 year of studying to improve my specialization in the area am holding right now.', '2022-05-01', '2023-04-03', 1, '2022-04-02 04:00:14', '2022-04-30 16:41:25'),
+(11, 5, 1, 'axcvgm', '2022-04-12', '2022-04-30', 2, '2022-04-02 04:01:40', '2022-04-28 15:28:03'),
 (12, 5, 2, '<p>zAKZLZN;</p>', '2022-04-27', '2022-04-30', 0, '2022-04-02 07:27:39', '2022-04-02 07:27:39'),
 (13, 5, 2, '<p>aasedwcusioj</p>', '2022-04-30', '2022-04-28', 0, '2022-04-02 08:50:46', '2022-04-02 08:50:46'),
-(14, 4, 3, '<p>My wife has delivered today and am applying for paternity right leave.</p>', '2022-04-19', '2022-05-02', 0, '2022-04-18 05:18:16', '2022-04-18 05:18:16');
+(14, 4, 3, '<p>My wife has delivered today and am applying for paternity right leave.</p>', '2022-04-19', '2022-05-02', 0, '2022-04-18 05:18:16', '2022-04-18 05:18:16'),
+(15, 9, 2, '<p>I would like to get started with the institution sponsorship on my studies.</p>', '2022-04-30', '2024-01-27', 2, '2022-04-26 18:13:54', '2022-05-03 06:32:10'),
+(17, 6, 5, 'sgjsksks', '2022-04-30', '2022-05-07', 0, '2022-04-29 16:40:45', '2022-04-29 16:40:45'),
+(18, 11, 2, 'Study', '2022-05-10', '2022-05-30', 2, '2022-05-03 07:19:43', '2022-05-03 07:22:14'),
+(19, 3, 1, 'Feeling Unwell', '2022-05-10', '2022-10-30', 0, '2022-05-04 16:01:28', '2022-05-04 16:01:28');
 
 -- --------------------------------------------------------
 
@@ -106,9 +110,10 @@ CREATE TABLE `departments` (
 --
 
 INSERT INTO `departments` (`id`, `dpname`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Agricultural Department', 1, NULL, '2022-03-28 06:34:00'),
+(1, 'Aeroneutical departments', 0, NULL, '2022-05-05 12:03:47'),
 (2, 'ICT Department', 1, NULL, '2022-03-28 06:24:49'),
-(3, 'Geography Department', 0, '2022-03-28 06:08:32', '2022-03-28 06:08:32');
+(3, 'Geography Department', 0, '2022-03-28 06:08:32', '2022-03-28 06:08:32'),
+(4, 'Agricultural Department', 0, '2022-04-30 13:28:30', '2022-05-03 06:29:45');
 
 -- --------------------------------------------------------
 
@@ -145,9 +150,11 @@ CREATE TABLE `leavetypes` (
 --
 
 INSERT INTO `leavetypes` (`id`, `leave_type`, `status`, `created_at`, `updated_at`) VALUES
-(1, 'Maternity', 1, NULL, '2022-03-28 06:46:32'),
-(2, 'Study leave', 1, NULL, '2022-04-18 05:08:03'),
-(3, 'Paternity Leave', 1, '2022-04-18 05:08:38', '2022-04-18 05:08:38');
+(1, 'Maternity', 1, NULL, '2022-04-30 13:29:16'),
+(2, 'Study', 1, NULL, '2022-05-03 06:32:50'),
+(3, 'Paternity', 1, '2022-04-18 05:08:38', '2022-05-03 06:33:10'),
+(4, 'Sabbatical Leave', 0, '2022-04-28 14:57:47', '2022-04-28 14:57:47'),
+(5, 'Special', 0, '2022-04-28 15:12:45', '2022-05-03 07:15:34');
 
 -- --------------------------------------------------------
 
@@ -194,6 +201,13 @@ CREATE TABLE `password_resets` (
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `password_resets`
+--
+
+INSERT INTO `password_resets` (`email`, `token`, `created_at`) VALUES
+('kimeliryans@gmail.com', '$2y$10$gpGatuHYVgLgn/RxcaDjlOFIeuegXhA6GkZOZgFKkDF1F4lgZFiL.', '2022-05-04 14:26:46');
+
 -- --------------------------------------------------------
 
 --
@@ -217,7 +231,8 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 INSERT INTO `personal_access_tokens` (`id`, `tokenable_type`, `tokenable_id`, `name`, `token`, `abilities`, `last_used_at`, `created_at`, `updated_at`) VALUES
-(8, 'App\\Models\\User', 3, 'leaveLogin', '5d18b8f16ad25f3fadc4a09fccaa86b6943220010c37a2ce5e1463ff7c9d2bae', '[\"*\"]', NULL, '2022-04-23 06:58:08', '2022-04-23 06:58:08');
+(8, 'App\\Models\\User', 3, 'leaveLogin', '5d18b8f16ad25f3fadc4a09fccaa86b6943220010c37a2ce5e1463ff7c9d2bae', '[\"*\"]', NULL, '2022-04-23 06:58:08', '2022-04-23 06:58:08'),
+(9, 'App\\Models\\User', 3, 'leaveLogin', 'bf8fc50c93e7edc6708b7fd7f650911ee184b1048e81f0c36f21a3ce3c6eb2df', '[\"*\"]', '2022-05-05 12:30:56', '2022-05-04 15:16:17', '2022-05-05 12:30:56');
 
 -- --------------------------------------------------------
 
@@ -242,7 +257,8 @@ CREATE TABLE `products` (
 INSERT INTO `products` (`id`, `name`, `description`, `price`, `quantity`, `created_at`, `updated_at`) VALUES
 (1, 'pain', 'gaming', 'allowed', 'by', '2022-04-18 07:55:50', '2022-04-18 11:00:35'),
 (2, 'Kimbo', NULL, '200', 'Kilograms', '2022-04-18 08:08:38', '2022-04-18 08:08:38'),
-(4, 'Toilex', 'High quantity', '135', 'grams', '2022-04-20 18:26:22', '2022-04-20 18:26:22');
+(4, 'Toilex', 'New Look', '200', 'grams', '2022-04-20 18:26:22', '2022-05-04 15:30:51'),
+(5, 'Ps4', 'Gaming Device', '35000', 'kgs', '2022-05-04 15:18:22', '2022-05-04 15:18:22');
 
 -- --------------------------------------------------------
 
@@ -271,13 +287,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `last_name`, `gender`, `phone`, `email`, `department_id`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`, `role_as`) VALUES
-(3, 'Faith', 'Tracey', 'Female', '02202203', 'loyal@gmail.com', 2, NULL, '$2y$10$i9NTgWamC05bbGkEszaHsusH3bJHYgLMUm6sMzkxMltuqyKN5G0iy', NULL, '2022-03-25 16:10:11', '2022-03-25 16:10:11', 1),
-(4, 'Rony', 'Ryan', 'Male', '022256', 'rony@gmail.com', 2, NULL, '$2y$10$wlb/HS8LE5rriUcSaLJY3OeGncZ1nl5TnUQ1TF0inPNfOvZKjMSS.', NULL, '2022-03-28 05:44:23', '2022-03-28 05:44:23', 0),
-(5, 'Putin', 'Donald', 'Male', '2222555', 'putin@gmail.com', 3, NULL, '$2y$10$QocotxZZNyZHwtQqaxrV4OxuZ4lHo2cVH/o5nPTHd75oTaAsl59lq', NULL, '2022-03-29 05:47:10', '2022-03-29 05:47:10', 0),
+(3, 'Faith', 'Tracey', 'Female', '26243200', 'loyal@gmail.com', 2, NULL, '$2y$10$i4v32FOIDmRaKsVApkDoDexrCfZmBZdrswpabdySfM/J06osZOHSS', NULL, '2022-03-25 16:10:11', '2022-04-30 08:34:48', 1),
+(4, 'Rony', 'Ryan', 'Male', '999999', 'rony@gmail.com', 2, NULL, '$2y$10$n11y5NJ5HgcQByqfAjduhOpSIXcTP3BIPnFx9PaR7k1bMaaicVfRi', NULL, '2022-03-28 05:44:23', '2022-04-30 16:47:33', 0),
+(5, 'Putin', 'Donald', 'Male', '102030', 'putin@gmail.com', 3, NULL, '$2y$10$phGKJE42gDQBroD2rpZ5.eRQFlGAs7sFVfM1nCmuMjyh2Dvqn7pE6', NULL, '2022-03-29 05:47:10', '2022-05-05 08:20:45', 0),
 (6, 'Rony', 'Ryan', 'Male', '228228', 'rony1@gmail.com', 2, NULL, '$2y$10$ho.E3xixpYuk6fmeW43kuOQvr2PFlloWEwtsChayhwAczmiR1l01q', NULL, '2022-04-20 18:14:20', '2022-04-20 18:14:20', 0),
 (7, 'Rony', 'Ryan', 'Male', '228228', 'rony12@gmail.com', 2, NULL, '$2y$10$0x2wMNfaTNtxZ8.rucFAOOlUT/QWfIHGJXgI9g2hIoKS1adpWtr72', NULL, '2022-04-20 18:16:33', '2022-04-20 18:16:33', 0),
 (8, 'Sylvian', 'Willies', 'Female', '222222', 'sylvian@gmail.com', 3, NULL, '$2y$10$nR13XPJubykLKzFKn7bPYOsaLAAwgWa9CD1RdFN2nCKWxw5QIgHY6', NULL, '2022-04-21 02:35:05', '2022-04-21 02:35:05', 0),
-(9, 'Doriss', 'Willies', 'Female', '222222', 'doris@gmail.com', 3, NULL, '$2y$10$8SrccHbFrBTr6F8sUJ06XOPLkduKXRBjhV2aQZzT4hlAXNfd51urm', NULL, '2022-04-21 05:07:58', '2022-04-21 05:07:58', 0);
+(9, 'Doris', 'Willies', 'Female', '222222', 'doris@gmail.com', 3, NULL, '$2y$10$FMLutdF2vFB9q.yt22tkcupMs2FwqynBaAOsY9kJP7Gxghb4PIv9m', NULL, '2022-04-21 05:07:58', '2022-04-30 08:44:10', 0),
+(11, 'Alicia', 'Williams', 'Female', '262432', 'alicia@gmail.com', 1, NULL, '$2y$10$ECpCsjsyzdW/RgCA6lNpKOERyBHUncCmp.mr52vxhpZNEnu/LkSiC', NULL, '2022-05-03 07:11:41', '2022-05-03 07:17:31', 0),
+(23, 'William', 'Rutto', 'Male', '222222222', 'ruto@gmail.com', 2, NULL, '$2y$10$xkb/XmiX6rxQwFhGiSx7BuMpULb2HtNMYRb8uUU5GGe7To0dvmh4W', NULL, '2022-05-04 13:15:29', '2022-05-05 08:24:11', 0);
 
 --
 -- Indexes for dumped tables
@@ -355,7 +373,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `applyleaves`
 --
 ALTER TABLE `applyleaves`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -367,7 +385,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `departments`
 --
 ALTER TABLE `departments`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -379,7 +397,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `leavetypes`
 --
 ALTER TABLE `leavetypes`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -391,19 +409,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

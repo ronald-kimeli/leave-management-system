@@ -20,7 +20,7 @@
                         @endforeach
                     </div>
                     @endif
-                    <form action="{{url('admin/add_category')}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('admin/add/category')}}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group mb-3">

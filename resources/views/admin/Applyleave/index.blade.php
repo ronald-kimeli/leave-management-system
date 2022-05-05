@@ -99,10 +99,10 @@
                   ?>
                 </td>
                 <td>
-                  <a href="{{url('admin/edit_applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
+                  <a href="{{url('admin/edit/applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
                 </td>
                 <td>
-                  <form action="{{url('admin/delete_applyleave/'.$item->id)}}" method="POST">
+                  <form action="{{url('admin/delete/applyleave/'.$item->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button class="btn btn-danger" type="submit">Delete</button>

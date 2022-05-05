@@ -85,7 +85,7 @@ class ApplyleaveController extends Controller
         $data->leave_to = $request->input('leave_to');
         $data->save();
 
-        return redirect('add_applyleave')->with(['status' => 'Leave Applied Successfully', 'status_code' => 'success']);
+        return redirect('add/applyleave')->with(['status' => 'Leave Applied Successfully', 'status_code' => 'success']);
     }
 
     /**
