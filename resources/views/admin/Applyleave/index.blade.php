@@ -8,6 +8,7 @@
       <div class="card shadow">
         <div class="card-header">
           <h4>Applied Leaves
+          <a href="{{url('admin/edit/applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
             <a href="{{url('admin/add/applyleave')}}" class="btn btn-primary btn-sm float-end">Apply Leave</a>
           </h4>
         </div>
@@ -99,7 +100,7 @@
                   ?>
                 </td>
                 <td>
-                  <a href="{{url('admin/edit/applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
+                  <a href="{{url('admin/edit/applyleave/'.$item->id)}}" class="btn btn-success">Update</a>
                 </td>
                 <td>
                   <form action="{{url('admin/delete/applyleave/'.$item->id)}}" method="POST">

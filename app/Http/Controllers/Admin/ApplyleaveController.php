@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Applyleave;
 use App\Models\Leavetype;
 use App\Models\User;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ApplyleaveController extends Controller
 {
@@ -18,7 +20,7 @@ class ApplyleaveController extends Controller
     public function index()
     {
         $data = Applyleave::all();
-        return view('admin.Applyleave.index',compact('data')); 
+        return view('admin.Applyleave.index', compact('data'));
     }
 
     /**
@@ -26,18 +28,18 @@ class ApplyleaveController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create() // applies on fronted
     {
         $users = User::all();
         $leavetype = Leavetype::all();
-        return view('Pages.Applyleave.create',['users'=>$users],['leavetype'=>$leavetype]);
+        return view('Pages.Applyleave.create', ['users' => $users], ['leavetype' => $leavetype]);
     }
 
-    public function _create()
+    public function _create() // applies on backend
     {
         $users = User::all();
         $leavetype = Leavetype::all();
-        return view('admin.Applyleave.create',['users'=>$users],['leavetype'=>$leavetype]); 
+        return view('admin.Applyleave.create', ['users' => $users], ['leavetype' => $leavetype]);
     }
 
     /**
@@ -46,11 +48,11 @@ class ApplyleaveController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function register(Request $request)
+    public function register(Request $request) // Store function for backend
     {
         $request->validate([
-            'user_id'=> 'required',
-            'leave_type_id'=> 'required',
+            'user_id' => 'required',
+            'leave_type_id' => 'required',
             'description' => 'required',
             'leave_from' => 'required',
             'leave_to' => 'required'
@@ -67,11 +69,11 @@ class ApplyleaveController extends Controller
         return redirect('admin/add/applyleave')->with(['status' => 'Leave Applied Successfully', 'status_code' => 'success']);
     }
 
-    public function store(Request $request)
+    public function store(Request $request) // store in frontend
     {
         $request->validate([
-            'user_id'=> 'required',
-            'leave_type_id'=> 'required',
+            'user_id' => 'required',
+            'leave_type_id' => 'required',
             'description' => 'required',
             'leave_from' => 'required',
             'leave_to' => 'required'
@@ -85,7 +87,7 @@ class ApplyleaveController extends Controller
         $data->leave_to = $request->input('leave_to');
         $data->save();
 
-        return redirect('add/applyleave')->with(['status' => 'Leave Applied Successfully', 'status_code' => 'success']);
+        return redirect('/')->with(['status' => 'Leave Applied Successfully. You have 2 days to update your application', 'status_code' => 'success']);
     }
 
     /**
@@ -97,7 +99,7 @@ class ApplyleaveController extends Controller
     public function show()
     {
         $data = Applyleave::all();
-        return view('Pages.Applyleave.show',compact('data')); 
+        return view('Pages.Applyleave.show', compact('data'));
     }
 
     /**
@@ -106,11 +108,18 @@ class ApplyleaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id)// Backend
     {
         $data = Applyleave::find($id);
         return view('admin.Applyleave.edit', compact('data'));
     }
+
+    public function _edit($id)// Frontend
+    {
+        $data = Applyleave::find($id);
+        return view('Pages.Applyleave.edit', compact('data'));
+    }
+
 
     /**
      * Update the specified resource in storage.
@@ -119,17 +128,44 @@ class ApplyleaveController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id) // backend
     {
         $request->validate([
             'status' => 'required'
         ]);
-        
-        $data = Applyleave::find($id); 
+
+        $data = Applyleave::find($id);
         $data->status = $request->input('status');
         $data->update();
 
         return redirect('admin/applyleave')->with(['status' => 'Updated Successfully', 'status_code' => 'success']);
+    }
+
+    public function _update(Request $request, $id) // Update on the frontend
+    {
+        $validator = Validator::make($request->all(), [
+            'description' => 'required',
+            'leave_from' => 'required',
+            'leave_to' => 'required'
+        ]);
+
+        if ($validator->fails()) {
+            $errors = implode(" ", $validator->errors()->all());
+            return response(['status' => 'error', 'message' => $errors]);
+        }
+      
+            $data = Applyleave::find($id);
+            if ($data) {
+                $data->description = $request->input('description');
+                $data->leave_from = $request->input('leave_from');
+                $data->leave_to = $request->input('leave_to');
+                $data->update();
+
+                return redirect('/')->with(['status' => 'Leave updated successfully and is being processed', 'status_code' => 'success']);
+            } else {
+                return redirect('add/applyleave')->with(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.']);
+            }
+        
     }
 
     /**

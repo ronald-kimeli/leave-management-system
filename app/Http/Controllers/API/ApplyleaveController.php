@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Applyleave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ApplyleaveController extends Controller
 {
@@ -18,7 +19,14 @@ class ApplyleaveController extends Controller
     {
         {
             $applyleaves = Applyleave::all();
-            return response()->json(['applyleaves'=>$applyleaves],200);
+            if($applyleaves)
+                {
+                return response()->json(['applyleaves'=>$applyleaves],200);
+                }
+            else
+                {
+                    return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
+                }
         }
     }
 
@@ -30,22 +38,36 @@ class ApplyleaveController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'leave_type_id'=> 'required',
             'description' => 'required',
             'leave_from' => 'required',
             'leave_to' => 'required'
         ]);
 
-        $data = new Applyleave;
-        $data->user_id = Auth::user()->id;
-        $data->leave_type_id = $request->input('leave_type_id');
-        $data->description = $request->input('description');
-        $data->leave_from = $request->input('leave_from');
-        $data->leave_to = $request->input('leave_to');
-        $data->save();
+        if ($validator->fails())
+        {
+           $errors = implode(" ", $validator->errors()->all());
+           return response(['status' => 'error', 'message' => $errors]);
+        }
 
-        return response()->json(['message'=>'Leave successfully received and is being processed'],200);
+
+        $data = new Applyleave;
+        if($data)
+            {
+            $data->user_id = Auth::user()->id;
+            $data->leave_type_id = $request->input('leave_type_id');
+            $data->description = $request->input('description');
+            $data->leave_from = $request->input('leave_from');
+            $data->leave_to = $request->input('leave_to');
+            $data->save();
+
+            return response()->json(['message'=>'Leave successfully received and is being processed'],200);
+            }
+        else
+            {
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);    
+            }
     }
 
     /**
@@ -58,13 +80,13 @@ class ApplyleaveController extends Controller
     {
         $applyleave = Applyleave::find($id);
         if($applyleave)
-        {
-            return response()->json(['applyleave'=>$applyleave],200);
-        }
+            {
+                return response()->json(['applyleave'=>$applyleave],200);
+            }
         else
-        {
-            return response()->json(['message'=>'No Leave Found'],404);
-        }
+            {
+                return response()->json(['message'=>'No Leave Found'],404);
+            }
 
     }
 
@@ -77,7 +99,36 @@ class ApplyleaveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'leave_type_id'=> 'required',
+            'description' => 'required',
+            'leave_from' => 'required',
+            'leave_to' => 'required'
+        ]);
+
+        if ($validator->fails())
+        {
+           $errors = implode(" ", $validator->errors()->all());
+           return response(['status' => 'error', 'message' => $errors]);
+        }
+
+
+        $data = Applyleave::find($id);
+        if($data)
+            {
+            $data->user_id = Auth::user()->id;
+            $data->leave_type_id = $request->input('leave_type_id');
+            $data->description = $request->input('description');
+            $data->leave_from = $request->input('leave_from');
+            $data->leave_to = $request->input('leave_to');
+            $data->update();
+
+            return response()->json(['message'=>'Leave updated successfully and is being processed'],200);
+            }
+        else
+            {
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);    
+            }
     }
 
     /**
@@ -88,6 +139,15 @@ class ApplyleaveController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = Applyleave::find($id);
+        if($data)
+        {
+            $data->delete();
+            return response()->json(['message'=>'You have cancelled your leave successfully. You can still apply for consideration.'],200);
+        }
+        else
+        {
+            return response()->json(['message'=>'You have no leave associated to this id'],404); 
+        }
     }
 }

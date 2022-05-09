@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Leavetype;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class LeavetypeController extends Controller
 {
@@ -16,7 +17,15 @@ class LeavetypeController extends Controller
     public function index()
     {
         $leavetypes = Leavetype::all();
-        return response()->json(['leavetypes'=>$leavetypes],200);
+        if($leavetypes)
+        {
+            return response()->json(['leavetypes'=>$leavetypes],200);
+        }
+        else
+        {
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
+        }
+        
     }
 
     /**
@@ -27,14 +36,30 @@ class LeavetypeController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'leave_type' => 'required'
         ]);
-          $leavetype = new Leavetype();
-          $leavetype->leave_type = $request->input('leave_type');
-          $leavetype->save();
 
-          return response()->json(['message'=>'Leave Type Added Successfully'],200);
+        if ($validator->fails())
+        {
+           $errors = implode(" ", $validator->errors()->all());
+           return response(['status' => 'error', 'message' => $errors]);
+        }
+
+          $leavetype = new Leavetype();
+
+          if($leavetype)
+          {
+            $leavetype->leave_type = $request->input('leave_type');
+            $leavetype->save();
+            
+            return response()->json(['message'=>'Leave Type Added Successfully'],200);
+          }
+          else
+          {
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404); 
+          }
+          
     }
 
     /**
@@ -45,7 +70,15 @@ class LeavetypeController extends Controller
      */
     public function show($id)
     {
-        //
+        $leavetype = Leavetype::find($id);
+        if ($leavetype) 
+        {
+            return response()->json(['leavetype' => $leavetype], 200);
+        } 
+        else 
+        {
+            return response()->json(['message' => 'No Leave Type associated with this id'], 404);
+        }
     }
 
     /**
@@ -57,17 +90,33 @@ class LeavetypeController extends Controller
      */
     public function update(Request $request, $id)
     {
-       
-        $request->validate([
+        
+            $validator = Validator::make($request->all(), [
             'leave_type' => 'required',
             'status' => 'required'
         ]);
-        $leavetype = Leavetype::find($id);
-        $leavetype->leave_type = $request->input('leave_type');
-        $leavetype->status = $request->input('status') == true ? '1' : '0';
-        $leavetype->update();
 
-          return response()->json(['message'=>'Leave Type Added Successfully'],200);
+        if ($validator->fails())
+        {
+           $errors = implode(" ", $validator->errors()->all());
+           return response(['status' => 'error', 'message' => $errors]);
+        }
+
+
+        $leavetype = Leavetype::find($id);
+        if($leavetype)
+            {
+                $leavetype->leave_type = $request->input('leave_type');
+                $leavetype->status = $request->input('status') == true ? '1' : '0';
+                $leavetype->update();
+        
+                  return response()->json(['message'=>'Leave Type Added Successfully'],200);
+            }
+            else
+            {
+                return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404); 
+            }
+      
     }
 
     

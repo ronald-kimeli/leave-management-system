@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
 {
@@ -16,7 +17,14 @@ class DepartmentController extends Controller
     public function index()
     {
         $departments = Department::all();
-        return response()->json(['departments'=>$departments],200);
+       if($departments)
+          {
+             return response()->json(['departments'=>$departments],200);
+          }
+        else
+        {
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
+        }
     }
 
     /**
@@ -27,14 +35,29 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'dpname' => 'required'
         ]);
-          $department = new Department;
-          $department->dpname = $request->input('dpname');
-          $department->save();
 
-          return response()->json(['message'=>'Department Added Successfully'],200);
+        if ($validator->fails())
+        {
+           $errors = implode(" ", $validator->errors()->all());
+           return response(['status' => 'error', 'message' => $errors]);
+        }
+
+          $department = new Department;
+        if($department)
+           {
+            $department->dpname = $request->input('dpname');
+            $department->save();
+
+            return response()->json(['message'=>'Department Added Successfully'],200);
+           }
+        else
+           {
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);   
+           }
+         
     }
 
     /**
@@ -67,17 +90,32 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
             'dpname' => 'required',
             'status' => 'required'
 
         ]);
-          $department = Department::find($id);
-          $department->dpname = $request->input('dpname');
-          $department->status = $request->input('status') == true ? '1' : '0';
-          $department->update();
 
-          return response()->json(['message'=>'Department Updated Successfully'],200);
+        if ($validator->fails())
+        {
+           $errors = implode(" ", $validator->errors()->all());
+           return response(['status' => 'error', 'message' => $errors]);
+        }
+
+          $department = Department::find($id);
+          if($department)
+            {
+                $department->dpname = $request->input('dpname');
+                $department->status = $request->input('status') == true ? '1' : '0';
+                $department->update();
+                
+                return response()->json(['message'=>'Department Updated Successfully'],200);
+            }
+          else
+            {
+                return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);  
+            }
+          
     }
 
     /**

@@ -12,7 +12,7 @@ use App\Models\Department;
 use App\Models\Applyleave;
 
 
-class User extends Authenticatable
+class User extends Authenticatable 
 {
     use HasApiTokens, HasFactory, Notifiable;
 

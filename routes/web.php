@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\ApplyleaveController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\DepartmentController;
 
 /*
@@ -42,6 +43,8 @@ Route::delete('delete/department/{id}',[DepartmentController::class,'delete']);
 Route::get('add/applyleave',[ApplyleaveController::class,'create']);
 Route::post('add/applyleave',[ApplyleaveController::class,'store']);
 Route::get('show/applyleave',[ApplyleaveController::class,'show']);
+Route::get('edit/applyleave/{id}',[ApplyleaveController::class,'_edit']);
+Route::put('update/applyleave/{id}',[ApplyleaveController::class,'_update']);
 
 
 Auth::routes();
@@ -49,8 +52,8 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 // Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 
-// Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
-// Route::post('/register', [RegisterController::class, 'store'])->name('register');
+//  Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
+//  Route::post('/register', [RegisterController::class, 'store'])->name('register');
 
 Route::prefix('admin')->middleware(['auth','isAdmin'])->group(function(){   //,'isAdmin'
 Route::get('/dashboard',[DashboardController::class,'index'])->name('admin/dashboard');
@@ -82,14 +85,8 @@ Route::delete('delete/leavetype/{id}',[LeavetypeController::class,'delete']);
  
   // Leave Types Routes
 Route::get('applyleave',[ApplyleaveController::class,'index']);
-Route::get('add/applyleave',[ApplyleaveController::class,'_create']);
-Route::post('add/applyleave',[ApplyleaveController::class,'register']);
-
-
-// Route::get('add_applyleave',[App\Http\Controllers\Admin\ApplyleaveController::class,'create']);
-
-// Route::post('add_applyleave',[App\Http\Controllers\Admin\ApplyleaveController::class,'store']);
-
+Route::get('add/applyleave',[ApplyleaveController::class,'_create']);// contructed create for admin
+Route::post('add/applyleave',[ApplyleaveController::class,'register']);// store in admin contsructed
 Route::get('edit/applyleave/{id}',[ApplyleaveController::class,'edit']);
 Route::put('update/applyleave/{id}',[ApplyleaveController::class,'update']);
 Route::delete('delete/applyleave/{id}',[ApplyleaveController::class,'delete']);

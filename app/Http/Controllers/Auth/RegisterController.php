@@ -88,4 +88,11 @@ class RegisterController extends Controller
         'password' => Hash::make($data['password']),
     ],);
 }
+        public function showRegistrationForm()
+        {
+            $departments = Department::all();           
+            return view('auth.register',['departments'=>$departments]);
+        //      $department = department::all();  
+        //    return view('Pages.department.index',compact('department'));
+         }
 }
