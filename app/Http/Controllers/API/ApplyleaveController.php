@@ -66,7 +66,7 @@ class ApplyleaveController extends Controller
             }
         else
             {
-            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);    
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
             }
     }
 
@@ -99,18 +99,18 @@ class ApplyleaveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validator = Validator::make($request->all(), [
-            'leave_type_id'=> 'required',
-            'description' => 'required',
-            'leave_from' => 'required',
-            'leave_to' => 'required'
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'leave_type_id'=> 'required',
+        //     'description' => 'required',
+        //     'leave_from' => 'required',
+        //     'leave_to' => 'required'
+        // ]);
 
-        if ($validator->fails())
-        {
-           $errors = implode(" ", $validator->errors()->all());
-           return response(['status' => 'error', 'message' => $errors]);
-        }
+        // if ($validator->fails())
+        // {
+        //    $errors = implode(" ", $validator->errors()->all());
+        //    return response(['status' => 'error', 'message' => $errors]);
+        // }
 
 
         $data = Applyleave::find($id);
@@ -127,7 +127,7 @@ class ApplyleaveController extends Controller
             }
         else
             {
-            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);    
+            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
             }
     }
 
@@ -147,7 +147,7 @@ class ApplyleaveController extends Controller
         }
         else
         {
-            return response()->json(['message'=>'You have no leave associated to this id'],404); 
+            return response()->json(['message'=>'You have no leave associated to this id'],404);
         }
     }
 }

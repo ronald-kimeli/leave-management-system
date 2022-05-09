@@ -25,7 +25,7 @@ Route::post('logout',[AuthController::class, 'logout']);
 Route::get('leaves',[ApplyleaveController::class,'index']);
 Route::post('leave/apply',[ApplyleaveController::class,'store']);
 Route::get('leave/{id}/show',[ApplyleaveController::class,'show']);
-Route::put('leave/{id}/update',[ApplyleaveController::class,'update']);
+Route::post('leave/{id}/update',[ApplyleaveController::class,'update']);
 Route::delete('leave/{id}/delete',[ApplyleaveController::class,'destroy']);
 
 //Product Routes
@@ -36,7 +36,7 @@ Route::post('product/add',[ ProductController::class, 'store']);
 Route::delete('product/{id}/delete',[ ProductController::class, 'destroy']);
 //Department Routes
 Route::get('department/{id}/show',[DepartmentController::class,'show']);
-Route::put('department/{id}/update',[DepartmentController::class,'update']);
+Route::post('department/{id}/update',[DepartmentController::class,'update']);
 Route::post('department/add',[ DepartmentController::class, 'store']);
 Route::delete('department/{id}/delete',[ DepartmentController::class, 'destroy']);
 //Leavetype Routes
