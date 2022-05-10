@@ -100,7 +100,6 @@ class ApplyleaveController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'leave_type_id'=> 'required',
             'description' => 'required',
             'leave_from' => 'required',
             'leave_to' => 'required'
@@ -117,7 +116,6 @@ class ApplyleaveController extends Controller
         if($data)
             {
             $data->user_id = Auth::user()->id;
-            $data->leave_type_id = $request->input('leave_type_id');
             $data->description = $request->input('description');
             $data->leave_from = $request->input('leave_from');
             $data->leave_to = $request->input('leave_to');

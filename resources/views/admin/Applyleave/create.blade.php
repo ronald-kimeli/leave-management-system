@@ -54,7 +54,7 @@
                         <!-- start Description -->
                         <div class="form-group mb-3">
                             <label for="">{{ __('Description:') }}</label>
-                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description" value="{{ old('description') }}" placeholder="State the reason for Application!" required autofocus></textarea>
+                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" name="description"  placeholder="State the reason for Application!" required autofocus>{{ old('description') }}</textarea>
                         </div>
                         <!-- end I removed id="mysummernote" on description -->
                         <!-- Leave_From_Start -->
@@ -72,7 +72,7 @@
                         <!-- Submit form -->
                         <div class="form-group mb-3 rounded-pill">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Submit') }}
+                                {{ __('Apply') }}
                             </button>
                         </div>
                         <!-- End -->

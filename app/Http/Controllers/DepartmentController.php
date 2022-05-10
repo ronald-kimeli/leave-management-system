@@ -44,13 +44,13 @@ public function update(Request $request, $id)
   $department->status = $request->input('status') == true ? '1':'0';
   $department->update();
 
-  return redirect('departments')->with(['status'=>'Updated Successfully','status_code'=>'success']);
+  return redirect('departments')->with(['status'=>'Department updated successfully','status_code'=>'success']);
 }
 public function delete($id)
 {
   $department = Department::find($id);
   $department->delete();
-  return redirect('departments')->with(['status'=>'Deleted Successfully','status_code'=>'success']);
+  return redirect('departments')->with(['status'=>'Department deleted successfully','status_code'=>'success']);
 
 
 }

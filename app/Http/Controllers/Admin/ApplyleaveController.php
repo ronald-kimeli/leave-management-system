@@ -66,7 +66,7 @@ class ApplyleaveController extends Controller
         $data->leave_to = $request->input('leave_to');
         $data->save();
 
-        return redirect('admin/add/applyleave')->with(['status' => 'Leave Applied Successfully', 'status_code' => 'success']);
+        return redirect('admin/applyleave')->with(['status' => 'Leave Applied Successfully', 'status_code' => 'success']);
     }
 
     public function store(Request $request) // store in frontend
@@ -130,15 +130,42 @@ class ApplyleaveController extends Controller
      */
     public function update(Request $request, $id) // backend
     {
-        $request->validate([
+        $validator = Validator::make($request->all(), [
+            'description' => 'required',
+            'leave_from' => 'required',
+            'leave_to' => 'required',
             'status' => 'required'
         ]);
 
-        $data = Applyleave::find($id);
-        $data->status = $request->input('status');
-        $data->update();
+        if ($validator->fails())
+        {
+           $errors = implode(" ", $validator->errors()->all());
+           return response(['status' => 'error', 'message' => $errors]);
+        }
 
-        return redirect('admin/applyleave')->with(['status' => 'Updated Successfully', 'status_code' => 'success']);
+         $data = Applyleave::find($id);
+         if(($data->status) === 1)
+           {
+            return redirect('admin/applyleave')->with(['status' => 'Accepted! You cannot update anymore!', 'status_code' => 'error']);  
+           }
+           else
+           {
+            if ($data) {
+                $data->description = $request->input('description');
+                $data->leave_from = $request->input('leave_from');
+                $data->leave_to = $request->input('leave_to');
+                $data->status = $request->input('status');
+                $data->update();
+
+                return redirect('admin/applyleave')->with(['status' => 'Updated Successfully', 'status_code' => 'success']);
+            }
+            else
+            {
+                return redirect('admin/add/applyleave')->with(['status' => 'something went wrong! Contact administrator', 'status_code' => 'error']);   
+            }
+           }
+         
+      
     }
 
     public function _update(Request $request, $id) // Update on the frontend
@@ -153,19 +180,45 @@ class ApplyleaveController extends Controller
             $errors = implode(" ", $validator->errors()->all());
             return response(['status' => 'error', 'message' => $errors]);
         }
-      
-            $data = Applyleave::find($id);
-            if ($data) {
-                $data->description = $request->input('description');
-                $data->leave_from = $request->input('leave_from');
-                $data->leave_to = $request->input('leave_to');
-                $data->update();
+                                    
 
-                return redirect('/')->with(['status' => 'Leave updated successfully and is being processed', 'status_code' => 'success']);
-            } else {
-                return redirect('add/applyleave')->with(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.']);
+            $data = Applyleave::find($id);
+            // declaring  values.
+            $fdata = $data->created_at ;
+            $account_active_days = 2;
+    
+            // calculating the expiration date.
+            $account_expires = "{$fdata} + {$account_active_days} days";
+    
+            // creating objects from the two dates.
+            $origin = new DateTime($fdata);
+            $expire = new Datetime($account_expires);
+    
+    
+            $today = new DateTime();
+          
+         
+            if ($expire < $today){
+              return redirect('/')->with(['status' => 'Your update time has expired!', 'status_code' => 'error']);
+             }else{
+                if(($data->status) === 0)
+                {
+          
+                if ($data) {
+                    $data->description = $request->input('description');
+                    $data->leave_from = $request->input('leave_from');
+                    $data->leave_to = $request->input('leave_to');
+                    $data->update();
+    
+                    return redirect('show/applyleave')->with(['status' => 'Leave updated successfully and is being processed', 'status_code' => 'success']);
+                } else {
+                    return redirect('add/applyleave')->with(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.']);
+                }
             }
+           
+            }  
         
+           
     }
 
     /**
