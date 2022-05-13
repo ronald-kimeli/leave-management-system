@@ -110,7 +110,7 @@ class LeavetypeController extends Controller
                 $leavetype->status = $request->input('status') == true ? '1' : '0';
                 $leavetype->update();
         
-                  return response()->json(['message'=>'Leave Type Added Successfully'],200);
+                  return response()->json(['message'=>'Leave Type Updated Successfully'],200);
             }
             else
             {

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ApplyleaveCollection;
 use App\Models\Applyleave;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,8 +18,10 @@ class ApplyleaveController extends Controller
      */
     public function index()
     {
-        {
-            $applyleaves = Applyleave::all();
+        // return new ApplyleaveCollection(Applyleave::all());
+        $applyleaves = new ApplyleaveCollection(Applyleave::all());
+
+            // $applyleaves = Applyleave::all();
             if($applyleaves)
                 {
                 return response()->json(['applyleaves'=>$applyleaves],200);
@@ -27,7 +30,7 @@ class ApplyleaveController extends Controller
                 {
                     return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
                 }
-        }
+        
     }
 
     /**
