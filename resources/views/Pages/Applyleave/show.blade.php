@@ -16,20 +16,20 @@
             <thead>
               <tr>
                 <!-- I should comment this out cause already its the auth user <th>User_Id</th> -->
-                <th>User_Id</th>
+                <th>Name</th>
                 <th>Leave_Type</th>
                 <th>Leave_From</th>
                 <th>Leave_To</th>
                 <th>Applied_At</th>
                 <th>Days_applied_For</th>
-   
+
                 <th>Status</th>
                 <th>Edit</th>
                 <!-- <th>Delete</th> -->
               </tr>
             </thead>
             <tbody>
-      
+           
               @foreach($data as $item )
               @if($item->user_id == Auth::user()->id)
               <tr>
@@ -40,7 +40,7 @@
                 <td>{{$item->leave_to}}</td>
                 <td>{{$item->created_at}}</td>
                 <td>
-                  <?php 
+                  <?php
                   // Lets declare variables
                   $fdate = $item->leave_from;
                   $tdate = $item->leave_to;
@@ -51,11 +51,11 @@
                   echo $days;
                   ?>
                 </td>
-           
-                       <td>
-                 <?php
-                    if ($item->status == '0') {
-                      echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+
+                <td>
+                  <?php
+                  if ($item->status == '0') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                          <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                              <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                          </symbol>
@@ -72,9 +72,9 @@
                                           <b>Pending</b>
                                           </div>
                                           </div>';
-                    }
-                    if ($item->status == '1') {
-                      echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  }
+                  if ($item->status == '1') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                           <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                           </symbol>
@@ -91,9 +91,9 @@
                                           <b>Accepted</b>
                                           </div>
                                           </div>';
-                    }
-                    if ($item->status == '2') {
-                      echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+                  }
+                  if ($item->status == '2') {
+                    echo '<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                                           <symbol id="check-circle-fill" fill="currentColor" viewBox="0 0 16 16">
                                               <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                                           </symbol>
@@ -110,41 +110,14 @@
                                            <b>Rejected</b>
                                           </div>
                                           </div>';
-                    }
-                    ?>
-                  </td>
-                  <td> 
-                                    
-                    <?php
-                              // declaring  values.
-                      $account_created = $item->created_at;
-                      $account_active_days = 2;
+                  }
+                  ?>
+                </td>
+                <td>
+                  <a href="{{url('edit/applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
+                </td>
 
-                      // calculating the expiration date.
-                      $account_expires = "{$account_created} + {$account_active_days} days";
-
-                      // creating objects from the two dates.
-                      $origin = new Datetime($account_created);
-                      $expire = new Datetime($account_expires);
-
-
-                      $today = new DateTime();
-                    
-                   
-                      if ($expire < $today){
-                        $days_expired = date_diff($expire, $today);
-                        echo "You are not allowed to update anymore!
-                        Your update time has expired {$days_expired->days} days ago.
-                        Contact administrator for more information.";
-                       }else{
-                         echo "You are still allowed to update.";
-                      }  
-                    ?>
-
-                    <a href="{{url('edit/applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
-                  </td>
-               
-                  <!-- <td>
+                <!-- <td>
                     <form action="{{url('delete/applyleave/'.$item->id)}}" method="POST">
                       @csrf
                       @method('DELETE')
@@ -153,12 +126,12 @@
   
   
                   </td>  -->
-               
+
               </tr>
 
               @endif
               @endforeach
-
+             
             </tbody>
           </table>
         </div>

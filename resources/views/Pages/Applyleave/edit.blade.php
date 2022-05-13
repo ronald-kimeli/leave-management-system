@@ -7,7 +7,7 @@
             <div class="card shadow">
                 <div class="card-header">
                     <h4>Leave Application Form
-                        <a href="{{url('/')}}" class="btn btn-danger btn-sm float-end rounded-pill">Cancel</a>
+                        <a href="{{url('show/applyleave')}}" class="btn btn-danger btn-sm float-end">Back</a>
                     </h4>
                 </div>
                 <div class="card-body">
@@ -55,7 +55,7 @@
                         <!-- Submit form -->
                         <div class="form-group mb-3 rounded-pill">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Submit') }}
+                                {{ __('Update') }}
                             </button>
                         </div>
                         <!-- End -->

@@ -71,7 +71,7 @@
                         <!-- Submit form -->
                         <div class="form-group mb-3 rounded-pill">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Submit') }}
+                                {{ __('Apply') }}
                             </button>
                         </div>
                         <!-- End -->

@@ -8,7 +8,7 @@
             <div class="card shadow">
                 <div class="card-header">
                     <h4>Edit Leave_Type
-                        <a href="{{url('admin/leavetype')}}" class="btn btn-danger btn-sm float-end rounded-pill"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Back</a>
+                        <a href="{{url('admin/leavetype')}}" class="btn btn-danger btn-sm float-end">BACK</a>
                     </h4>
                 </div>
                 <div class="card-body">

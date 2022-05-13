@@ -9,7 +9,7 @@
     </ol>
     <div class="row">
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
+            <div class="card bg-success text-white mb-4">
                 <div class="card-body">
                     Total Users
                     <h5>{{ $users}}</h5>
@@ -23,7 +23,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
+            <div class="card bg-success text-white mb-4">
                 <div class="card-body">
                     Total Departments
                     <h5>{{ $departments}}</h5>
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
+            <div class="card bg-success text-white mb-4">
                 <div class="card-body">
                     Total Leaves
                     <h5>{{ $leaves}}</h5>
@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
+            <div class="card bg-success text-white mb-4">
                 <div class="card-body">
                     Total Leave_Types
                     <h5>{{ $leavetypes}}</h5>
@@ -65,7 +65,7 @@
             </div>
         </div>
         <div class="col-xl-3 col-md-6">
-            <div class="card bg-primary text-white mb-4">
+            <div class="card bg-success text-white mb-4">
                 <div class="card-body">
                     Total Admin
                     <h5>{{ $admins}}</h5>

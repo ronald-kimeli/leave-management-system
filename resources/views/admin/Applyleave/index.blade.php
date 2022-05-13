@@ -8,7 +8,7 @@
       <div class="card shadow">
         <div class="card-header">
           <h4>Applied Leaves
-          <a href="{{url('admin/edit/applyleave/'.$item->id)}}" class="btn btn-success btn-sm">Update</a>
+         
             <a href="{{url('admin/add/applyleave')}}" class="btn btn-primary btn-sm float-end">Apply Leave</a>
           </h4>
         </div>
@@ -74,7 +74,7 @@
                                         <div class="alert alert-success d-flex align-items-center" role="alert">
                                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                                         <div>
-                                        <b>Accepted</b>
+                                        <b>Accepted Already!</b>
                                         </div>
                                         </div>';
                   }
@@ -93,7 +93,7 @@
                                         <div class="alert alert-danger d-flex align-items-center" role="alert">
                                         <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                                         <div>
-                                         <b>Rejected</b>
+                                         <b>Rejected Already!</b>
                                         </div>
                                         </div>';
                   }

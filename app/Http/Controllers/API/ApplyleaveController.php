@@ -92,12 +92,11 @@ class ApplyleaveController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'leave_type_id'=> 'required',
-        //     'description' => 'required',
-        //     'leave_from' => 'required',
-        //     'leave_to' => 'required'
-        // ]);
+        $validator = Validator::make($request->all(), [
+            'description' => 'required',
+            'leave_from' => 'required',
+            'leave_to' => 'required'
+        ]);
 
         // if ($validator->fails())
         // {

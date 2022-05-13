@@ -45,12 +45,12 @@ class LeavetypeController extends Controller
         $leavetype->status = $request->input('status') == true ? '1' : '0';
         $leavetype->update();
 
-        return redirect('admin/leavetype')->with(['status' => 'Updated Successfully', 'status_code' => 'success']);
+        return redirect('admin/leavetype')->with(['status' => 'Leave-type updated successfully', 'status_code' => 'success']);
     }
     public function delete($id)
     {
         $leavetype = Leavetype::find($id);
         $leavetype->delete();
-        return redirect('admin/leavetype')->with(['status' => 'Deleted Successfully', 'status_code' => 'success']);
+        return redirect('admin/leavetype')->with(['status' => 'Leave-type deleted successfully', 'status_code' => 'success']);
     }
 }
