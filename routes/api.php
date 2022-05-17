@@ -36,7 +36,7 @@ Route::post('product/add',[ ProductController::class, 'store']);
 Route::delete('product/{id}/delete',[ ProductController::class, 'destroy']);
 //Department Routes
 Route::get('department/{id}/show',[DepartmentController::class,'show']);
-Route::post('department/{id}/update',[DepartmentController::class,'update']);
+Route::put('department/{id}/update',[DepartmentController::class,'update']);
 Route::post('department/add',[ DepartmentController::class, 'store']);
 Route::delete('department/{id}/delete',[ DepartmentController::class, 'destroy']);
 //Leavetype Routes
