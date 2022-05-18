@@ -194,27 +194,28 @@ class ApplyleaveController extends Controller
             $origin = new DateTime($fdata);
             $expire = new Datetime($account_expires);
     
-    
             $today = new DateTime();
-          
          
-            if ($expire < $today){
+            if ($expire < $today)
+             {
               return redirect('/')->with(['status' => 'Your update time has expired!', 'status_code' => 'error']);
-             }else{
+             }
+             else
+             {
                 if(($data->status) === 0)
                 {
           
-                if ($data) {
-                    $data->description = $request->input('description');
-                    $data->leave_from = $request->input('leave_from');
-                    $data->leave_to = $request->input('leave_to');
-                    $data->update();
-    
-                    return redirect('show/applyleave')->with(['status' => 'Leave updated successfully and is being processed', 'status_code' => 'success']);
-                } else {
-                    return redirect('add/applyleave')->with(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.']);
-                }
-            }
+                    if ($data) {
+                        $data->description = $request->input('description');
+                        $data->leave_from = $request->input('leave_from');
+                        $data->leave_to = $request->input('leave_to');
+                        $data->update();
+        
+                        return redirect('show/applyleave')->with(['status' => 'Leave updated successfully and is being processed', 'status_code' => 'success']);
+                    } else {
+                        return redirect('add/applyleave')->with(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.']);
+                    }
+               }
            
             }  
         

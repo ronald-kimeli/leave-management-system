@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Leavetype;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class LeavetypeController extends Controller
@@ -46,20 +48,28 @@ class LeavetypeController extends Controller
            return response(['status' => 'error', 'message' => $errors]);
         }
 
-          $leavetype = new Leavetype();
-
-          if($leavetype)
-          {
-            $leavetype->leave_type = $request->input('leave_type');
-            $leavetype->save();
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
+        {
+            $leavetype = new Leavetype();
+            if($leavetype)
+            {
+              $leavetype->leave_type = $request->input('leave_type');
+              $leavetype->save();
+              
+              return response()->json(['message'=>'Leave Type Added Successfully'],200);
+            }
+            else
+            {
+              return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404); 
+            }
             
-            return response()->json(['message'=>'Leave Type Added Successfully'],200);
-          }
-          else
-          {
-            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404); 
-          }
-          
+        }
+        else
+        {
+            return response()->json(['message' => 'Unauthorized!'],200);
+        }
     }
 
     /**
@@ -102,20 +112,29 @@ class LeavetypeController extends Controller
            return response(['status' => 'error', 'message' => $errors]);
         }
 
-
-        $leavetype = Leavetype::find($id);
-        if($leavetype)
-            {
-                $leavetype->leave_type = $request->input('leave_type');
-                $leavetype->status = $request->input('status') == true ? '1' : '0';
-                $leavetype->update();
-        
-                  return response()->json(['message'=>'Leave Type Updated Successfully'],200);
-            }
-            else
-            {
-                return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404); 
-            }
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
+        {
+            $leavetype = Leavetype::find($id);
+            if($leavetype)
+                {
+                    $leavetype->leave_type = $request->input('leave_type');
+                    $leavetype->status = $request->input('status') == true ? '1' : '0';
+                    $leavetype->update();
+            
+                      return response()->json(['message'=>'Leave Type Updated Successfully'],200);
+                }
+                else
+                {
+                    return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404); 
+                }
+      
+        }
+        else
+        {
+            return response()->json(['message' => 'Unauthorized!'],200);
+        }
       
     }
 
@@ -128,15 +147,25 @@ class LeavetypeController extends Controller
      */
     public function destroy($id)
     {
-        $leavetype = Leavetype::find($id);
-        if($leavetype)
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
         {
-            $leavetype->delete();
-            return response()->json(['message'=>'Leave Type Deleted Successfully'],200);
+            $leavetype = Leavetype::find($id);
+            if($leavetype)
+            {
+                $leavetype->delete();
+                return response()->json(['message'=>'Leave Type Deleted Successfully'],200);
+            }
+            else
+            {
+                return response()->json(['message'=>'No Leave Type associated with this id'],404); 
+            }
         }
         else
         {
-            return response()->json(['message'=>'No Leave Type associated with this id'],404); 
+            return response()->json(['message' => 'Unauthorized!'],200);  
         }
+   
     }
 }

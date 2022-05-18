@@ -16,6 +16,8 @@ Route::post('login',[AuthController::class, 'login']);
 Route::get('departments',[DepartmentController::class,'index']);
 // Public Route Leavetypes
 Route::get('leavetypes',[LeavetypeController::class,'index']);
+// Public product Route
+Route::get('products',[ProductController::class,'index']);
 //Protected Routes
 Route::middleware(['auth:sanctum'])->prefix('v1')->group(function ()
 {
@@ -29,7 +31,6 @@ Route::put('leave/{id}/update',[ApplyleaveController::class,'update']);
 Route::delete('leave/{id}/delete',[ApplyleaveController::class,'destroy']);
 
 //Product Routes
-Route::get('products',[ProductController::class,'index']);
 Route::get('product/{id}/show',[ProductController::class,'show']);
 Route::put('product/{id}/update',[ProductController::class,'update']);
 Route::post('product/add',[ ProductController::class, 'store']);

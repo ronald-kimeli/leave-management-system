@@ -23,7 +23,7 @@ class AuthController extends Controller
                   'phone' => 'required|string|max:191',
                   'email' => 'required|email|max:191|unique:users,email',
                   'department_id' => 'required|string|max:191',
-                  'password' => 'required|string|max:191'
+                  'password' => 'required|string|max:191|confirmed'
             ]);
 
             $user = User::create([

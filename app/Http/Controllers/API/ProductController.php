@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
@@ -48,21 +50,31 @@ class ProductController extends Controller
             return response(['status' => 'error', 'message' => $errors]);
          }
 
-        $product = new Product;
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->quantity = $request->quantity;
-        $product->save();
-
-        if ($product)
-          {
-            return response()->json(['message' => 'Product Added Successfully'], 200);
-          }
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
+        {
+            $product = new Product; 
+            if ($product)
+              {
+                $product->name = $request->name;
+                $product->description = $request->description;
+                $product->price = $request->price;
+                $product->quantity = $request->quantity;
+                $product->save();
+    
+                return response()->json(['message' => 'Product Added Successfully'], 200);
+              }
+            else
+                {
+                    return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
+                }  
+        }
         else
-            {
-                return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
-            }  
+        {
+            return response()->json(['message' => 'Unauthorized!'],200);
+        }
+     
 
     }
 
@@ -107,20 +119,30 @@ class ProductController extends Controller
            return response(['status' => 'error', 'message' => $errors]);
         }
 
-        $product = Product::find($id);
-        if ($product) {
-            $product->name = $request->name;
-            $product->description = $request->description;
-            $product->price = $request->price;
-            $product->quantity = $request->quantity;
-            $product->update();
-
-            return response()->json(['message' => 'Product updated Successfully'], 200);
-        } 
-        else 
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
         {
-            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
+            $product = Product::find($id);
+            if ($product) {
+                $product->name = $request->name;
+                $product->description = $request->description;
+                $product->price = $request->price;
+                $product->quantity = $request->quantity;
+                $product->update();
+    
+                return response()->json(['message' => 'Product updated Successfully'], 200);
+            } 
+            else 
+            {
+                return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
+            }
         }
+        else
+        {
+            return response()->json(['message' => 'Unauthorized!'],200);
+        }
+    
     }
 
     /**
@@ -131,15 +153,25 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
-        if ($product)
-         {
-            $product->delete();
-            return response()->json(['message' => 'Product Deleted Successfully'], 200);
-        }
-         else 
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
         {
-            return response()->json(['message' => 'No Product associated with this id.'], 404);
+            $product = Product::find($id);
+            if ($product)
+             {
+                $product->delete();
+                return response()->json(['message' => 'Product Deleted Successfully'], 200);
+            }
+             else 
+            {
+                return response()->json(['message' => 'No Product associated with this id.'], 404);
+            }
         }
+        else
+        {
+            return response()->json(['message' => 'Unauthorized!'],200);  
+        }
+   
     }
 }

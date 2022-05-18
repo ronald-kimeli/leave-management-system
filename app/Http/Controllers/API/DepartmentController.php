@@ -4,7 +4,9 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class DepartmentController extends Controller
@@ -45,18 +47,28 @@ class DepartmentController extends Controller
            return response(['status' => 'error', 'message' => $errors]);
         }
 
-          $department = new Department;
-        if($department)
-           {
-            $department->dpname = $request->input('dpname');
-            $department->save();
-
-            return response()->json(['message'=>'Department Added Successfully'],200);
-           }
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1)
+        {
+            $department = new Department;
+            if($department)
+               {
+                $department->dpname = $request->input('dpname');
+                $department->save();
+    
+                return response()->json(['message'=>'Department Added Successfully'],200);
+               }
+            else
+               {
+                return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);   
+               }
+        }  
         else
-           {
-            return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);   
-           }
+        {
+            return response()->json(['message' => 'Unauthorized!'],200);
+        }
+      
          
     }
 
@@ -102,19 +114,28 @@ class DepartmentController extends Controller
            return response(['status' => 'error', 'message' => $errors]);
         }
 
-          $department = Department::find($id);
-          if($department)
-            {
-                $department->dpname = $request->input('dpname');
-                $department->status = $request->input('status') == true ? '1' : '0';
-                $department->update();
-                
-                return response()->json(['message'=>'Department Updated Successfully'],200);
-            }
-          else
-            {
-                return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);  
-            }
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
+        {
+            $department = Department::find($id);
+            if($department)
+              {
+                  $department->dpname = $request->input('dpname');
+                  $department->status = $request->input('status') == true ? '1' : '0';
+                  $department->update();
+                  
+                  return response()->json(['message'=>'Department Updated Successfully'],200);
+              }
+            else
+              {
+                  return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);  
+              }
+        }
+        else
+        {
+            return response()->json(['message' => 'Unauthorized!'],200);
+        }
           
     }
 
@@ -126,15 +147,25 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        $department = Department::find($id);
-        if($department)
+
+        $user_id = Auth::user()->id;
+        $role = User::where('id', $user_id)->first()->role_as;
+        if ($role === 1) 
         {
-            $department->delete();
-            return response()->json(['message'=>'Department Deleted Successfully'],200);
+            $department = Department::find($id);
+            if($department)
+            {
+                $department->delete();
+                return response()->json(['message'=>'Department Deleted Successfully'],200);
+            }
+            else
+            {
+                return response()->json(['message'=>'No Department associated with this id'],404); 
+            }
         }
         else
         {
-            return response()->json(['message'=>'No Department associated with this id'],404); 
+            return response()->json(['message' => 'Unauthorized!'],200);  
         }
     }
 }
