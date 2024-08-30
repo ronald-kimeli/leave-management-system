@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddUserIdToApplyleavesTable extends Migration
+class AddLeaveTypeIdToApplyleavesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,8 +14,8 @@ class AddUserIdToApplyleavesTable extends Migration
     public function up()
     {
         Schema::table('applyleaves', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->default(2);
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->unsignedBigInteger('leave_type_id')->default(2);
+            $table->foreign('leave_type_id')->references('id')->on('leavetypes')->onDelete('cascade');
         });
     }
 
@@ -27,8 +27,8 @@ class AddUserIdToApplyleavesTable extends Migration
     public function down()
     {
         Schema::table('applyleaves', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
+            $table->dropForeign(['leave_type_id']);
+            $table->dropColumn('leave_type_id');
         });
     }
 }

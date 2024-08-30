@@ -1,11 +1,11 @@
-# Leave Application Website (Laravel)
+# Leave Application Website (Laravel) is a full-stack application for managing and applying leave on an organization.
 
 ## Installation
 
 ### clone this project into your machine
 
 ```bash
-git clone https://github.com/KimelirR/Leave-Application-Laravel.git
+git clone https://github.com/ronald-kimeli/leave-management-system.git
 ```
 
 ### Install project dependencies
@@ -24,31 +24,31 @@ npm install
 
 ### Create .env file through copy
 
-```
+```bash
 cp .env.example .env
 ```
  
 ### Provide database credentials below in .env file.
 
-```
+```bash
 DB_DATABASE=?Your_DB_Database
 DB_USERNAME=?Your_DB_Username
 DB_PASSWORD=?Your_DB_password
 ```
 
-### Run migrations 
+### Run migrations and seed dummy data
 
 ```php
 php artisan migrate:fresh --seed 
 ```
 
-### Generate key for laravel new application you have installed.
+### Generate key for laravel new application you have installed and clear cache.
 
 ```php
 php artisan key:generate && php artisan config:cache
 ```
 
-## Start Our application
+## Start the application
 
 ```php
 php artisan serve
@@ -60,42 +60,23 @@ php artisan serve
 localhost:8000
 ```
 
-### Testing
+### Testing !email and password respectifully
 
 * First we need to login as user, try apply leave, check leave status and logout
 
 ## User leads you to homepage
 
-<p> Login with the credentials below</p>
-
-Email
-
 ```bash
-loyal@gmail.com
-```
-
-Password
-
-```bash
-12345678
+user@gmail.com = 12345678
 ```
 
 ## Admin leads you to admin dashboard
-<p> Login with the credentials below</p>
-
-Email
 
 ```bash
-doris@gmail.com
+doris@gmail.com = 12345678
 ```
 
-Password
-
-```bash
-12345678
-```
-
-## Now we are great
+## Great! we can now review the work of this software, Note! that API is also included
 
 #### On the Front_End
 * Apply Leave
@@ -104,10 +85,8 @@ Password
   * You can as well use api to register,login,logout and pull the data using Postman
 
 #### On the Back_End
-* Manage Users, Departments,Applied Leaves, and Leave Types
+* Manage Users, Departments, Applied Leaves, and Leave Types
 * Logout out of the system
-           
-#### On the Back_End
-* Database name is **leave_management** 
+
 
 
