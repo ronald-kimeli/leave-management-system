@@ -73,7 +73,7 @@ user@gmail.com = 12345678
 ## Admin leads you to admin dashboard
 
 ```bash
-doris@gmail.com = 12345678
+admin@gmail.com = 12345678
 ```
 
 ## Great! we can now review the work of this software, Note! that API is also included
