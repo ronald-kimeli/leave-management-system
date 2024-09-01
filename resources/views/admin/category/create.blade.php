@@ -2,9 +2,15 @@
 @section('title', 'Add Category')
 @section('content')
 
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-8 offset-2">
+<div class="container-fluid px-4">
+    <h4 class="mt-4">User</h4>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item">User</li>
+    </ol>
+    <div class="row mt-4">
+        <div class="col-lg-12 col-xl-12 col-md-12">
+
             <div class="card shadow">
                 <div class="card-header">
                     <h4>Add category
@@ -14,11 +20,11 @@
                 <div class="card-body">
 
                     @if($errors->any())
-                    <div class="alert alert-danger">
-                        @foreach($errors->all() as $error)
-                        <div>{{$error}}</div>
-                        @endforeach
-                    </div>
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <div>{{$error}}</div>
+                            @endforeach
+                        </div>
                     @endif
                     <form action="{{url('admin/add/category')}}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -35,7 +41,8 @@
 
                         <div class="form-group mb-3">
                             <label for="">description</label>
-                            <textarea type="text" name="description" id="mysummernote" rows="5" class="form-control"></textarea>
+                            <textarea type="text" name="description" id="mysummernote" rows="5"
+                                class="form-control"></textarea>
                         </div>
 
                         <div class="form-group mb-3">

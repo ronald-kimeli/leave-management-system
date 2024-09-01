@@ -47,10 +47,6 @@ Route::post('leavetype/add',[ LeavetypeController::class, 'store']);
 Route::delete('leavetype/{id}/delete',[ LeavetypeController::class, 'destroy']);
 });
 
-
-
-
-
 /*
 |--------------------------------------------------------------------------
 | API Routes

@@ -17,8 +17,6 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-
-
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
@@ -30,7 +28,8 @@
     <!-- Styles -->
     <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        crossorigin="anonymous"></script>
 
     <!-- datatables css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -54,12 +53,9 @@
             padding-right: 0px !important;
         }
     </style>
-
-
 </head>
 
 <body>
-
     @include('layouts.inc.admin-navbar')
 
     <div id="layoutSidenav">
@@ -76,7 +72,6 @@
             @include('layouts.inc.admin-footer')
 
         </div>
-
     </div>
 
     <script src="{{asset('backend/js/bootstrap.bundle.min.js')}}"></script>
@@ -84,24 +79,23 @@
     <script src="{{asset('backend/js/jquery-3.6.0.min.js')}}"></script>
 
     @if(session('status'))
-    <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
-    <script>
-        swal({
-            title: "{{session('status')}}",
-            text: "",
-            icon: "{{session('status_code')}}",
-            button: "Ok!",
-        }).then(function() {
-            window.location.reload();
-        })
-    </script>
+        <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
+        <script>
+            swal({
+                title: "{{session('status')}}",
+                text: "",
+                icon: "{{session('status_code')}}",
+                button: "Ok!",
+            }).then(function () {
+                window.location.reload();
+            })
+        </script>
     @endif
-
 
     <!-- summernote js -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#mysummernote").summernote({
                 height: 150,
             });
@@ -113,7 +107,7 @@
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#mydataTable').DataTable({
                 "scrollY": true,
                 "scrollX": true

@@ -24,7 +24,8 @@
     <link rel="stylesheet" href=" {{asset('frontend/css/style.css')}} ">
     <!-- Font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- summernote css -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
@@ -47,7 +48,7 @@
             margin-right: -100px !important;
         } */
 
-         .dataTables_wrapper .dataTables_paginate .paginate_button {
+        .dataTables_wrapper .dataTables_paginate .paginate_button {
             padding: 0px !important;
             margin-left: 0px !important;
 
@@ -55,11 +56,11 @@
 
         div.dataTables_wrapper div.dataTables_length select {
             width: 50% !important;
-        } 
+        }
 
         div.dataTables_wrapper {
             width: 100% !important;
-            margin: 0 auto !important; 
+            margin: 0 auto !important;
             /* padding: 0 auto !important; It was commented before */
             padding-left: 3px !important;
             padding-right: 0px !important;
@@ -72,47 +73,44 @@
     <div>
         @include('layouts.inc.navbar')
 
-
         @yield('content')
     </div>
-
 
     <script src="{{asset('frontend/js/bootstrap5.bundle.js')}}"></script>
     <script src="{{asset('frontend/js/jquery-3.6.0.min.js')}}"></script>
 
     @if(session('status'))
-    <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
-    <script>
-        swal({
-            title: "{{session('status')}}",
-            text: "",
-            icon: "{{session('status_code')}}",
-            button: "Ok!",
-        }).then(function() {
-            window.location.reload();
-        })
-    </script>
+        <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
+        <script>
+            swal({
+                title: "{{session('status')}}",
+                text: "",
+                icon: "{{session('status_code')}}",
+                button: "Ok!",
+            }).then(function () {
+                window.location.reload();
+            })
+        </script>
 
     @endif
-
-
 
     <!-- summernote js -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#mysummernote").summernote({
                 height: 150,
             });
             $('.dropdown-toggle').dropdown();
         });
     </script>
+
     <!-- datatables js -->
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#mydataTable').DataTable({
                 "scrollY": true,
                 "scrollX": true

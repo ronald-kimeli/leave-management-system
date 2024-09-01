@@ -2,80 +2,18 @@
 
 @section('content')
 
-<!-- <div class="col-md-10 bg-dark text-light offset-1 py-5">
-    <center>
-<h1>
-  Welcome to Leave Application Website
-</h1>
-<p>
-  This is home page
-</p>
-</center>
-</div> -->
-
-
-<!-- <div class="col-md-10 offset-1">
-</div>
-
-    <section class="section">
-        <div class="container">
-            <div class="row">
-
-                <div class="col-md-8 offset-2">
-                    <h2 class=" section-title text-center">
-                        <span class="text-red"> Designed System </span> for online application
-                    </h2>
-                    <p class=" section-subtitle text-center">
-                        WE ARE WORKING CLOSELY TO REACH YOU AS SOON AS POSSIBLE
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section>
-        <div class="container">
-            <div class="row ">
-                <div class="col-md-4  border-rounded">
-                    <div class="card">
-                       
-                        <div class="card-body">
-                            <h2 class="card-title text-colden">Our Vision</h2>
-                            <p class="card-text">To ensure ease application anywhere,anytime.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4  border-rounded ">
-                    <div class="card">
-                        <div class="card-body">
-                            <h2 class="card-title text-colden">Our Mission</h2>
-                            <p class="card-text">To ensure smooth running of application. </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4  border-rounded">
-                    <div class="card">
-                        <div class="card-body">
-                            <h2 class="card-title text-colden ">Our Values</h2>
-                            <p class="card-text">Improved user support.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-    <!-- Current -->
-    <!-- Banner Section -->
+<!-- Current -->
+<!-- Banner Section -->
 <section id="banner">
     <div class="container">
         <div class="row">
             <div class="col-md-6">
                 <p class="promo-title">LEAVE MANAGEMENT SYSTEM</p>
-                <p>Welcome to Leave Management System where you can apply Leave and track the progress on your own account.</p>
+                <p>Welcome to Leave Management System where you can apply Leave and track the progress on your own
+                    account.</p>
                 <p>Get educated on how to apply Leave online by watching this video below</p>
-                <a href="#"><img src="{{asset('frontend/images/play.png')}}" alt="Online System image" class="play-btn">Watch this Short Tutorial</a>
+                <a href="#"><img src="{{asset('frontend/images/play.png')}}" alt="Online System image"
+                        class="play-btn">Watch this Short Tutorial</a>
             </div>
             <div class="col-md-6">
                 <img src="{{asset('frontend/images/home2.png')}}" class="image" alt="">
@@ -84,24 +22,6 @@
     </div>
     <img src="{{asset('frontend/images/wave1.png')}}" alt="" class="bottom-img">
 </section>
-
-<!-- Description section -->
-<!-- <section class="section">
-    <div class="container">
-        <div class="row">
-
-            <div class="col-md-12">
-                <h2 class="section-title text-center">
-                    <span class="text-red"> Designed System </span> for online application
-                </h2>
-                <p class=" section-subtitle text-center">
-                    WE ARE WORKING CLOSELY TO REACH YOU AS SOON AS POSSIBLE
-
-                </p>
-            </div>
-        </div>
-    </div> -->
-
 
 <!-- Services Section -->
 <section id="services">
@@ -116,12 +36,14 @@
             <div class="col-md-4 services">
                 <img src="{{asset('frontend/images/service2.png')}}" alt="" class="service-img">
                 <h4>leave status</h4>
-                <p>Login and tab on leave application, then tab on leave status.Ensure that you keep on tracking your status!</p>
+                <p>Login and tab on leave application, then tab on leave status.Ensure that you keep on tracking your
+                    status!</p>
             </div>
             <div class="col-md-4 services">
                 <img src="{{asset('frontend/images/service3.png')}}" alt="" class="service-img">
                 <h4>profile update</h4>
-                <p>It is User friendly System, where you shall be able change your Profile easily. Just follow instructions carefully. </p>
+                <p>It is User friendly System, where you shall be able change your Profile easily. Just follow
+                    instructions carefully. </p>
             </div>
         </div>
         <button type="button" class="btn btn-primary">All Services</button>

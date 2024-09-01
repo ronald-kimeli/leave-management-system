@@ -2,25 +2,33 @@
 @section('title', 'Add Category')
 @section('content')
 
-<div class="container py-5">
-    <div class="row">
-        <div class="col-md-8 offset-2">
+<div class="container-fluid px-4">
+    <h4 class="mt-4">User</h4>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">Dashboard</li>
+        <li class="breadcrumb-item">User</li>
+    </ol>
+    <div class="row mt-4">
+        <div class="col-lg-12 col-xl-12 col-md-12">
+
             <div class="card shadow">
                 <div class="card-header">
                     <h4>Edit category
-                        <a href="{{url('admin/category')}}" class="btn btn-danger btn-sm float-end rounded-pill"><i class="fa fa-arrow-circle-left" aria-hidden="true"></i>Back</a>
+                        <a href="{{url('admin/category')}}" class="btn btn-danger btn-sm float-end rounded-pill"><i
+                                class="fa fa-arrow-circle-left" aria-hidden="true"></i>Back</a>
                     </h4>
                 </div>
                 <div class="card-body">
 
                     @if($errors->any())
-                    <div class="alert alert-danger">
-                        @foreach($errors->all() as $error)
-                        <div>{{$error}}</div>
-                        @endforeach
-                    </div>
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <div>{{$error}}</div>
+                            @endforeach
+                        </div>
                     @endif
-                    <form action="{{url('admin/update_category/'.$category->id)}}" method="POST" enctype="multipart/form-data">
+                    <form action="{{url('admin/update_category/' . $category->id)}}" method="POST"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
 
@@ -36,7 +44,8 @@
 
                         <div class="form-group mb-3">
                             <label for="">description</label>
-                            <textarea type="text" name="description" id="mysummernote" rows="5" class="form-control">{{ $category->description }}</textarea>
+                            <textarea type="text" name="description" id="mysummernote" rows="5"
+                                class="form-control">{{ $category->description }}</textarea>
                         </div>
 
                         <div class="form-group mb-3">
@@ -47,30 +56,33 @@
                         <h6>SEO Tags</h6>
                         <div class="form-group mb-3">
                             <label for="">Meta_title</label>
-                            <input type="text" name="meta_title" value="{{ $category->meta_title }}" class="form-control">
+                            <input type="text" name="meta_title" value="{{ $category->meta_title }}"
+                                class="form-control">
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="">Meta_description</label>
-                            <textarea type="text" name="meta_description" rows="5" class="form-control">{{ $category->meta_description }}</textarea>
+                            <textarea type="text" name="meta_description" rows="5"
+                                class="form-control">{{ $category->meta_description }}</textarea>
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="">Meta_keyword</label>
-                            <textarea type="text" name="meta_keyword" rows="5" class="form-control">{{ $category->meta_keyword }}</textarea>
+                            <textarea type="text" name="meta_keyword" rows="5"
+                                class="form-control">{{ $category->meta_keyword }}</textarea>
                         </div>
 
                         <h6>Status Mode</h6>
                         <div class="row">
                             <div class="col-md-3 mb-3">
                                 <label for="">Navbar_status</label>
-                                <input type="checkbox" name="navbar_status" {{ $category->navbar_status == '1'  ? 'checked':''}} />
+                                <input type="checkbox" name="navbar_status" {{ $category->navbar_status == '1' ? 'checked' : ''}} />
                             </div>
                         </div>
 
                         <div class="col-md-3 mb-3">
                             <label for="">Status</label>
-                            <input type="checkbox" name="status" {{ $category->status == '1' ? 'checked':'' }} />
+                            <input type="checkbox" name="status" {{ $category->status == '1' ? 'checked' : '' }} />
                         </div>
 
                         <div class="form-group col-md-6 mb-3">

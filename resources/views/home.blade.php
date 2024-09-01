@@ -9,15 +9,15 @@
 
                 <div class="card-body">
                     @if(session('status'))
-                    <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
-                    <script>
-                        swal({
-                            title: "{{session('status')}}",
-                            text: "",
-                            icon: "{{session('status_code')}}",
-                            button: "Ok!",
-                        });
-                    </script>
+                        <script src="{{asset('frontend/js/sweetalert.min.js')}}"></script>
+                        <script>
+                            swal({
+                                title: "{{session('status')}}",
+                                text: "",
+                                icon: "{{session('status_code')}}",
+                                button: "Ok!",
+                            });
+                        </script>
 
                     @endif
                     {{ __('You are logged in!') }}
