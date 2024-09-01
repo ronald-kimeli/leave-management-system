@@ -1,4 +1,7 @@
-# Leave Application Website (Laravel) is a full-stack application for managing and applying leave on an organization.
+Leave Application Website (Laravel)
+==================================
+
+This is a full-stack application for managing and applying leave on an organization.
 
 ## Installation
 
