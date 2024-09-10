@@ -30,6 +30,8 @@
     <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" rel="stylesheet">
+
 
     <!-- datatables css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
@@ -56,11 +58,11 @@
 </head>
 
 <body>
-    @include('layouts.inc.admin-navbar')
+    @include('layouts.inc.admin.admin-navbar')
 
     <div id="layoutSidenav">
 
-        @include('layouts.inc.admin-sidebar')
+        @include('layouts.inc.admin.admin-sidebar')
 
         <div id="layoutSidenav_content">
             <main>
@@ -69,7 +71,7 @@
 
             </main>
 
-            @include('layouts.inc.admin-footer')
+            @include('layouts.inc.admin.admin-footer')
 
         </div>
     </div>
@@ -100,6 +102,12 @@
                 height: 150,
             });
             $('.dropdown-toggle').dropdown();
+
+            // Automatically expand the parent menu if a child link is active
+            $('.nav-link.active').each(function () {
+                $(this).closest('.collapse').addClass('show');
+                $(this).closest('.collapse').prev('.nav-link').addClass('parent-expanded');
+            });
         });
     </script>
     <!-- datatables js -->

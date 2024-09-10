@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.employee')
 
 @section('content')
 <div class="container py-5">
@@ -7,7 +7,6 @@
       <div class="card border-rounded shadow">
         <div class="card-header bg-info">
           <h4>Leave Status
-            <a href="{{url('/')}}" class="btn btn-danger btn-sm float-end rounded-pill">Exit</a>
           </h4>
         </div>
         <div class="card-body table-responsive">

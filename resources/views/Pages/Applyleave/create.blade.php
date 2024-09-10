@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.employee')
 
 @section('content')
 <div class="container py-5">
@@ -7,7 +7,6 @@
             <div class="card shadow">
                 <div class="card-header">
                     <h4>Leave Application Form
-                        <a href="{{url('/')}}" class="btn btn-danger btn-sm float-end rounded-pill">Cancel</a>
                     </h4>
                 </div>
                 <div class="card-body">

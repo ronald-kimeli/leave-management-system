@@ -29,14 +29,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Applyleave::class);
     }
-  //,'department_id'
-
-  //   should be available on
-  //$table->Integer('department_id');
-           // Removed from add_department_id_to_users_table --table=users
-        //$table->unsignedInteger('department_id')->nullable();
-
-       // $table->foreign('department_id')->references('id')->on('departments');
 
     protected $table = 'users';
 
@@ -49,6 +41,7 @@ class User extends Authenticatable
         'role_as',
         'email',
         'password',
+        'profile_picture',
     ];
 
 

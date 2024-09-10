@@ -29,21 +29,16 @@ class LoginController extends Controller
      * @var string
      */
     //protected $redirectTo = RouteServiceProvider::HOME;
-      public function authenticated()
-      {
-          if(Auth::user()->role_as == '1')
-          {
-              return redirect('admin/dashboard')->with(['status'=>' Welcome to Admin Dashboard','status_code'=>'success']);
-          }
-          else if(Auth::user()->role_as == '0')
-          {
-            return redirect('/')->with(['status'=>' Logged In Successful','status_code'=>'success']); 
-          }
-            else
-            {
-                return redirect('/home');   
-            }
-      }
+    public function authenticated()
+    {
+        if (Auth::user()->role_as == '1') {
+            return redirect('admin/dashboard')->with(['status' => ' Welcome to Admin Dashboard', 'status_code' => 'success']);
+        } else if (Auth::user()->role_as == '0') {
+            return redirect('show/applyleave')->with(['status' => ' Logged In Successful', 'status_code' => 'success']);
+        } else {
+            return redirect('/home');
+        }
+    }
 
     /**
      * Create a new controller instance.
@@ -53,16 +48,15 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-        
+
     }
 
-            protected function credentials(Request $request)
-        {
-            if(is_numeric($request->get('email')))
-            {
-            return['phone'=>$request->get('email'),'password'=>$request->get('password')];
-            }
-            return $request->only($this->username(), 'password');
+    protected function credentials(Request $request)
+    {
+        if (is_numeric($request->get('email'))) {
+            return ['phone' => $request->get('email'), 'password' => $request->get('password')];
         }
+        return $request->only($this->username(), 'password');
+    }
 }
 

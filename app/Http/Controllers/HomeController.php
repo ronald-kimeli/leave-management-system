@@ -21,9 +21,19 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
+    public function home()
+    {
+        return view('home')->with(['status' => 'You are Logged successful', 'status_code' => 'success']);
+    }
+
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
     public function index()
     {
-        return view('/home')->with(['status'=>'You are Logged successful','status_code'=>'success']);
-        // return redirect('home')->with(['status'=>'You are Logged successful','status_code'=>'success']);
+        return view('Pages.index');
     }
 }

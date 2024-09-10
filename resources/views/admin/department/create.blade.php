@@ -14,27 +14,32 @@
             <div class="card shadow">
                 <div class="card-header">
                     <h4>Create Department
-                        <a href="{{url('admin/departments')}}" class="btn btn-danger float-end">BACK</a>
+                        <a href="{{ url('admin/departments') }}" class="btn btn-danger float-end rounded-pill">
+                            <i class="fa fa-arrow-circle-left" aria-hidden="true"></i> Back
+                        </a>
                     </h4>
                 </div>
                 <div class="card-body">
-                    @if($errors->any())
-                        <div class="alert alert-danger">
-                            @foreach($errors->all() as $error)
-                                <div>{{$error}}</div>
-                            @endforeach
-                        </div>
-                    @endif
-                    <form action="{{url('admin/store/department')}}" method="POST">
+                    <form action="{{ url('admin/store/department') }}" method="POST">
                         @csrf
 
                         <div class="form-group mb-3">
-                            <label for="">Department</label>
-                            <input type="text" name="dpname" class="form-control">
+                            <label for="dpname">Department Name</label>
+                            <input
+                                id="dpname"
+                                type="text"
+                                name="dpname"
+                                class="form-control @error('dpname') is-invalid @enderror"
+                                value="{{ old('dpname') }}"
+                                autofocus
+                            />
+                            @error('dpname')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div class="form-group mb-3">
-                            <button type="submit" class="btn btn-primary">ADD</button>
+                            <button type="submit" class="btn btn-primary rounded">Submit</button>
                         </div>
 
                     </form>

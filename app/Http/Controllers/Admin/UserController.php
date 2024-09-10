@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+
 
 class UserController extends Controller
 {
@@ -14,6 +17,12 @@ class UserController extends Controller
   {
     $users = User::all();
     return view('admin.user.index', ['users' => $users]);
+  }
+
+  public function show()
+  {
+    $user = Auth::user();
+    return view('auth.profile.show', compact('user'));
   }
   public function create()
   {
@@ -51,6 +60,47 @@ class UserController extends Controller
     $user = User::find($user_id);
     return view('admin.user.edit', compact('user'));
   }
+
+  public function updateProfile(Request $request)
+  {
+      $user_id = Auth::user()->id;
+      $user = User::findOrFail($user_id); // Ensure the user exists
+  
+      $request->validate([
+          'name' => 'required|string|max:255',
+          'last_name' => 'required|string|max:255',
+          'email' => 'required|email|max:255|unique:users,email,' . $user_id,
+          'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+      ]);
+  
+      // Update user attributes
+      $user->fill([
+          'name' => $request->input('name'),
+          'last_name' => $request->input('last_name'),
+          'email' => $request->input('email'),
+      ]);
+  
+      // Handle profile picture upload
+      if ($request->hasFile('profile_picture')) {
+          // Delete old profile picture if exists
+          if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
+              unlink(public_path('profile_pictures/' . $user->profile_picture));
+          }
+  
+          // Save new profile picture
+          $file = $request->file('profile_picture');
+          $filename = time() . '.' . $file->getClientOriginalExtension();
+          $file->move(public_path('profile_pictures'), $filename);
+          $user->profile_picture = $filename;
+      }
+  
+      // Save updated user
+      $user->save();
+  
+      return redirect()->route('profile')->with(['status' => 'Profile updated successfully.', 'status_code' => 'success']);
+  }
+  
+  
   public function update(Request $request, $user_id)
   {
     $request->validate([
@@ -76,9 +126,7 @@ class UserController extends Controller
       $user->update();
 
       return redirect('admin/users')->with(['status' => 'User Updated Successfully', 'status_code' => 'success']);
-    }
-     else
-    {
+    } else {
       return redirect('admin/users')->with(['status' => 'No User Found', 'status_code' => 'error']);
     }
   }

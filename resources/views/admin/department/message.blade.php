@@ -12,13 +12,3 @@
     </script>
 
 @endif
-
-
-
-<!-- .then('function') 
-    {
-        location.reload(true);
-        tr.hide();
-    };
-
-this acts as reference timer-->

@@ -28,7 +28,6 @@ class ApplyleaveController extends Controller
             } else {
                 return response()->json(['status' => 'error', 'message' => 'Technical error ocurred , contact administrator.'], 404);
             }
-        
     }
 
     /**
@@ -50,7 +49,6 @@ class ApplyleaveController extends Controller
             $errors = implode(" ", $validator->errors()->all());
             return response(['status' => 'error', 'message' => $errors]);
         }
-
 
         $data = new Applyleave;
         if ($data) {

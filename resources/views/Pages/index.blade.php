@@ -2,7 +2,6 @@
 
 @section('content')
 
-<!-- Current -->
 <!-- Banner Section -->
 <section id="banner">
     <div class="container">
@@ -101,6 +100,7 @@
         </div>
     </div>
 </section>
+
 <!-- Social media section -->
 <section id="social-media">
     <div class="container text-center">
@@ -140,6 +140,5 @@
         <p class="copyright">Copyright &copy;<?php echo date("Y"); ?><br>Website Designed By Rony Ryan</p>
     </div>
 </section>
-
 
 @endsection

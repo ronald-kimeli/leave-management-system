@@ -1,4 +1,4 @@
-@extends('layouts.frontend')
+@extends('layouts.employee')
 
 @section('content')
 <div class="container py-5">
