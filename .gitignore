@@ -16,3 +16,5 @@ yarn-error.log
 composer.lock
 package-lock.json
 .notebook
+yarn.lock
+composer.lock
