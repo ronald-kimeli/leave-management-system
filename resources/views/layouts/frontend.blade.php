@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8">
@@ -108,7 +108,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 
     <!-- Custom scripts for all pages-->
-    <script src="{{asset('backend/js/scripts.js')}}"></script>
+    <script src="{{asset('backend/js/scripts.js')}}"></script>2
+
+    <script>
+        document.getElementById('btnSwitch').addEventListener('click',()=>{
+            if (document.documentElement.getAttribute('data-bs-theme') == 'dark') {
+                document.documentElement.setAttribute('data-bs-theme','light')
+            }
+            else {
+                document.documentElement.setAttribute('data-bs-theme','dark')
+            }
+        })
+        </script>
 
 </body>
 
