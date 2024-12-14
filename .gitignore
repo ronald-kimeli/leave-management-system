@@ -17,4 +17,3 @@ composer.lock
 package-lock.json
 .notebook
 yarn.lock
-composer.lock
