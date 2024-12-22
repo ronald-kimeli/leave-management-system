@@ -40,10 +40,12 @@
                                         {{ $empdata->status == '1' ? 'Approved' : 'Waiting Approval' }}
                                     </td>
                                     <td>
-                                        <a href="{{ url('admin/edit/department/' . $empdata->id) }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ url('admin/edit/department/' . $empdata->id) }}"
+                                            class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil"></i>
                                         </a>
-                                        <form action="{{ url('admin/delete/department/' . $empdata->id) }}" method="POST" style="display:inline;">
+                                        <form action="{{ url('admin/delete/department/' . $empdata->id) }}" method="POST"
+                                            style="display:inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button class="btn btn-danger btn-sm" type="submit">

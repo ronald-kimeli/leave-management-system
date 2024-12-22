@@ -29,7 +29,7 @@
                     <h5>{{ $departments}}</h5>
                 </div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretched-link" href="{{ url('departments')}}">
+                    <a class="small text-white stretched-link" href="{{ url('admin/departments')}}">
                         View Details
                     </a>
                     <div class="small text-dark"><i class="fas fa-angle-right"></i></div>

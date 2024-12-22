@@ -56,7 +56,7 @@
                         </div>
 
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </form>
                 </div>
