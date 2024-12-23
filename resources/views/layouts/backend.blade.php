@@ -32,15 +32,14 @@
         crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" rel="stylesheet">
 
-
     <!-- datatables css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
     <style>
         .dataTables_wrapper .dataTables_paginate .paginate_button {
             padding: 0px !important;
             margin-left: 0px !important;
-
         }
 
         div.dataTables_wrapper div.dataTables_length select {
@@ -50,14 +49,14 @@
         div.dataTables_wrapper {
             width: 100% !important;
             margin: 0 auto !important;
-            /* padding: 0 auto !important; */
             padding-left: 3px !important;
             padding-right: 0px !important;
         }
     </style>
 </head>
 
-<body>
+<body id="body" class="{{ session('theme', 'light') }}">
+
     @include('layouts.inc.admin.admin-navbar')
 
     <div id="layoutSidenav">
@@ -66,13 +65,10 @@
 
         <div id="layoutSidenav_content">
             <main>
-
                 @yield('content')
-
             </main>
 
             @include('layouts.inc.admin.admin-footer')
-
         </div>
     </div>
 
@@ -110,6 +106,7 @@
             });
         });
     </script>
+
     <!-- datatables js -->
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
@@ -119,6 +116,30 @@
             $('#mydataTable').DataTable({
                 "scrollY": true,
                 "scrollX": true
+            });
+
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.getElementById('body');
+
+            // Load the saved theme from localStorage
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+            }
+
+            // Toggle dark mode on button click
+            darkModeToggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode');
+                const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+
+                // Change button icon and text
+                if (theme === 'dark') {
+                    darkModeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+                } else {
+                    darkModeToggle.innerHTML = '<i class="bi bi-moon"></i>';
+                }
             });
         });
     </script>

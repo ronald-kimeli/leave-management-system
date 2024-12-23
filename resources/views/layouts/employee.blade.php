@@ -32,15 +32,14 @@
         crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" rel="stylesheet">
 
-
     <!-- datatables css -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+
     <style>
         .dataTables_wrapper .dataTables_paginate .paginate_button {
             padding: 0px !important;
             margin-left: 0px !important;
-
         }
 
         div.dataTables_wrapper div.dataTables_length select {
@@ -56,20 +55,27 @@
     </style>
 </head>
 
-<body>
+<body id="body" class="{{ session('theme', 'light') }}">
+
     @include('layouts.inc.employee.employee-navbar')
+
     <div id="layoutSidenav">
+
         @include('layouts.inc.employee.employee-sidebar')
+
         <div id="layoutSidenav_content">
             <main>
                 @yield('content')
             </main>
+
             @include('layouts.inc.employee.employee-footer')
         </div>
     </div>
+
     <script src="{{asset('backend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('backend/js/scripts.js')}}"></script>
     <script src="{{asset('backend/js/jquery-3.6.0.min.js')}}"></script>
+
     @if(session('status'))
         <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
         <script>
@@ -83,6 +89,7 @@
             })
         </script>
     @endif
+
     <!-- summernote js -->
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
     <script>
@@ -99,17 +106,44 @@
             });
         });
     </script>
+
     <!-- datatables js -->
     <script src="//cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
     <script>
         $(document).ready(function () {
             $('#mydataTable').DataTable({
                 "scrollY": true,
                 "scrollX": true
             });
+
+            // Dark mode toggle functionality
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            const body = document.getElementById('body');
+
+            // Load the saved theme from localStorage
+            if (localStorage.getItem('theme') === 'dark') {
+                body.classList.add('dark-mode');
+                darkModeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+            }
+
+            // Toggle dark mode on button click
+            darkModeToggle.addEventListener('click', function () {
+                body.classList.toggle('dark-mode');
+                const theme = body.classList.contains('dark-mode') ? 'dark' : 'light';
+                localStorage.setItem('theme', theme);
+
+                // Change button icon and text
+                if (theme === 'dark') {
+                    darkModeToggle.innerHTML = '<i class="bi bi-sun"></i>';
+                } else {
+                    darkModeToggle.innerHTML = '<i class="bi bi-moon"></i>';
+                }
+            });
         });
     </script>
+
 </body>
 
 </html>

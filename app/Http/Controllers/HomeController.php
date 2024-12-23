@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,7 +24,12 @@ class HomeController extends Controller
      */
     public function home()
     {
-        return view('home')->with(['status' => 'You are Logged successful', 'status_code' => 'success']);
+        $user = Auth::user();
+        if ($user->role_as == '1') {
+          return redirect('admin/dashboard')->with(['status' => 'Already logged in', 'status_code' => 'success']);
+        } else if ($user->role_as == '0') {
+          return redirect('show/applyleave')->with(['status' => ' Logged In Successful', 'status_code' => 'success']);
+        }
     }
 
 

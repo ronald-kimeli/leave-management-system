@@ -11322,7 +11322,14 @@ body {
 
 #layoutSidenav {
   display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  max-height: 100vh;  
+  overflow-y: auto;  
+  padding-top: 3rem;
 }
+
 #layoutSidenav #layoutSidenav_nav {
   flex-basis: 225px;
   flex-shrink: 0;
