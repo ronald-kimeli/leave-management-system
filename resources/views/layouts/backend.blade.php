@@ -68,26 +68,44 @@
             <main>
                 @yield('content')
             </main>
-            
+
             @include('layouts.inc.admin.admin-footer')
         </div>
     </div>
-    
+
     <script src="{{asset('backend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('backend/js/scripts.js')}}"></script>
     <script src="{{asset('backend/js/jquery-3.6.0.min.js')}}"></script>
 
-    @if(session('status'))
-        <script src="{{asset('backend/js/sweetalert.min.js')}}"></script>
+    @if(session('status') && session('status_code'))
         <script>
-            swal({
-                title: "{{session('status')}}",
-                text: "",
-                icon: "{{session('status_code')}}",
-                button: "Ok!",
-            }).then(function () {
-                window.location.reload();
-            })
+            document.addEventListener('DOMContentLoaded', function () {
+                var toastMessage = "{{ session('status') }}";
+                var toastClass = "{{ session('status_code') }}";  // 'success', 'warning', 'danger'
+                var faviconPath = "{{ asset('backend/images/favicon-32x32.png') }}"; // Path to the favicon
+                
+                var toastHTML = `
+                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                        <div id="liveToast" class="toast bg-${toastClass} text-white" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="toast-header">
+                                <img src="${faviconPath}" class="rounded me-2" alt="Favicon" style="width: 20px; height: 20px;">
+                                <strong class="me-auto">Notification</strong>
+                                <small>Just now</small>
+                                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                            </div>
+                            <div class="toast-body">
+                                ${toastMessage}
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                document.body.insertAdjacentHTML('beforeend', toastHTML);
+                
+                var toastElement = document.getElementById('liveToast');
+                var toastInstance = new bootstrap.Toast(toastElement, { delay: 3000 });
+                toastInstance.show();
+            });
         </script>
     @endif
 
@@ -146,5 +164,4 @@
     </script>
 
 </body>
-
 </html>
