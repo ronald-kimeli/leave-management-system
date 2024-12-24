@@ -28,6 +28,7 @@
     <!-- Styles -->
     <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet">
     <link href="{{ asset('backend/css/styles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css" rel="stylesheet">
@@ -67,11 +68,11 @@
             <main>
                 @yield('content')
             </main>
-
+            
             @include('layouts.inc.admin.admin-footer')
         </div>
     </div>
-
+    
     <script src="{{asset('backend/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{asset('backend/js/scripts.js')}}"></script>
     <script src="{{asset('backend/js/jquery-3.6.0.min.js')}}"></script>

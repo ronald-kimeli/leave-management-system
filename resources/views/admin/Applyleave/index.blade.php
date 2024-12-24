@@ -14,7 +14,6 @@
       <div class="card shadow">
         <div class="card-header">
           <h4>Applied Leaves
-
             <a href="{{url('admin/add/applyleave')}}" class="btn btn-primary btn-sm float-end">Apply Leave</a>
           </h4>
         </div>
@@ -30,8 +29,7 @@
                 <th>Leave_To</th>
                 <th>Applied_At</th>
                 <th>Status</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>Action</th>
               </tr>
             </thead>
             <tbody>
@@ -61,7 +59,7 @@
                    <div class="alert alert-primary d-flex align-items-center" role="alert">
                   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
                   <div>
-                  <b>Pending Update</b>
+                  <b>Pending!</b>
                   </div>
                   </div>';
           }
@@ -80,7 +78,7 @@
                   <div class="alert alert-success d-flex align-items-center" role="alert">
                   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
                   <div>
-                  <b>Accepted Already!</b>
+                  <b>Accepted!</b>
                   </div>
                   </div>';
           }
@@ -99,27 +97,30 @@
                   <div class="alert alert-danger d-flex align-items-center" role="alert">
                   <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
                   <div>
-                   <b>Rejected Already!</b>
+                   <b>Rejected!</b>
                   </div>
                   </div>';
           }
                   ?>
                 </td>
                 <td>
-                  <a href="{{url('admin/edit/applyleave/' . $item->id)}}" class="btn btn-success">Update</a>
-                </td>
-                <td>
-                  <form action="{{url('admin/delete/applyleave/' . $item->id)}}" method="POST">
-                  @csrf
-                  @method('DELETE')
-                  <button class="btn btn-danger" type="submit">Delete</button>
+                  <div class="btn-group" role="group">
+                  <a href="{{ url('admin/edit/applyleave/' . $item->id) }}" class="btn btn-warning me-2"
+                    title="Update">
+                    <i class="bi bi-pencil-fill"></i>
+                  </a>
+                  <form action="{{ url('admin/delete/applyleave/' . $item->id) }}" method="POST"
+                    style="display: inline;">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger" type="submit" title="Delete">
+                    <i class="bi bi-trash-fill"></i>
+                    </button>
                   </form>
-
-
+                  </div>
                 </td>
                 </tr>
         @endforeach
-
             </tbody>
           </table>
         </div>
