@@ -23,16 +23,21 @@
                         @csrf
 
                         <div class="form-group mb-3">
-                            <label for="leave_type">Leave Type</label>
-                            <input
-                                v-model="leavetype.leave_type"
-                                type="text"
-                                id="leave_type"
-                                name="leave_type"
+                            <label for="leave_type">Type</label>
+                            <input v-model="leavetype.leave_type" type="text" id="leave_type" name="leave_type"
                                 class="form-control @error('leave_type') is-invalid @enderror"
-                                value="{{ old('leave_type') }}"
-                            />
+                                value="{{ old('leave_type') }}" />
                             @error('leave_type')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="description">Description</label>
+                            <textarea v-model="leavetype.description" id="description" name="description"
+                                class="form-control @error('description') is-invalid @enderror"
+                                rows="3">{{ old('description') }}</textarea>
+                            @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

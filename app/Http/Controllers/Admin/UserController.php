@@ -63,73 +63,108 @@ class UserController extends Controller
 
   public function updateProfile(Request $request)
   {
-      $user_id = Auth::user()->id;
-      $user = User::findOrFail($user_id); // Ensure the user exists
-  
-      $request->validate([
-          'name' => 'required|string|max:255',
-          'last_name' => 'required|string|max:255',
-          'email' => 'required|email|max:255|unique:users,email,' . $user_id,
-          'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
-      ]);
-  
-      // Update user attributes
-      $user->fill([
-          'name' => $request->input('name'),
-          'last_name' => $request->input('last_name'),
-          'email' => $request->input('email'),
-      ]);
-  
-      // Handle profile picture upload
-      if ($request->hasFile('profile_picture')) {
-          // Delete old profile picture if exists
-          if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
-              unlink(public_path('profile_pictures/' . $user->profile_picture));
-          }
-  
-          // Save new profile picture
-          $file = $request->file('profile_picture');
-          $filename = time() . '.' . $file->getClientOriginalExtension();
-          $file->move(public_path('profile_pictures'), $filename);
-          $user->profile_picture = $filename;
-      }
-  
-      // Save updated user
-      $user->save();
-  
-      return redirect()->route('profile')->with(['status' => 'Profile updated successfully.', 'status_code' => 'success']);
-  }
-  
-  
-  public function update(Request $request, $user_id)
-  {
+    $user_id = Auth::user()->id;
+    $user = User::findOrFail($user_id); // Ensure the user exists
+
     $request->validate([
-      'name' => ['required', 'string', 'max:255'],
-      'last_name' => ['required', 'string', 'max:255'],
-      'gender' => ['required', 'string', 'max:50'],
-      'phone' => ['required', 'string', 'max:12'],
-      'email' => ['required', 'string', 'email', 'max:255'],
-      'role_as' => ['required', 'integer'],
-      'password' => ['required', 'string', 'min:8'],
+      'name' => 'required|string|max:255',
+      'last_name' => 'required|string|max:255',
+      'email' => 'required|email|max:255|unique:users,email,' . $user_id,
+      'profile_picture' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+    ]);
+
+    // Update user attributes
+    $user->fill([
+      'name' => $request->input('name'),
+      'last_name' => $request->input('last_name'),
+      'email' => $request->input('email'),
+    ]);
+
+    // Handle profile picture upload
+    if ($request->hasFile('profile_picture')) {
+      // Delete old profile picture if exists
+      if ($user->profile_picture && file_exists(public_path('profile_pictures/' . $user->profile_picture))) {
+        unlink(public_path('profile_pictures/' . $user->profile_picture));
+      }
+
+      // Save new profile picture
+      $file = $request->file('profile_picture');
+      $filename = time() . '.' . $file->getClientOriginalExtension();
+      $file->move(public_path('profile_pictures'), $filename);
+      $user->profile_picture = $filename;
+    }
+
+    // Save updated user
+    $user->save();
+
+    return redirect()->route('profile')->with(['status' => 'Profile updated successfully.', 'status_code' => 'success']);
+  }
+  // public function update(Request $request, $user_id)
+  // {
+  //   $request->validate([
+  //     'name' => ['required', 'string', 'max:255'],
+  //     'last_name' => ['required', 'string', 'max:255'],
+  //     'gender' => ['required', 'string', 'max:50'],
+  //     'phone' => ['required', 'string', 'max:12'],
+  //     'email' => ['required', 'string', 'email', 'max:255'],
+  //     'role_as' => ['required', 'integer'],
+  //     'password' => ['required', 'string', 'min:8'],
+  //   ]);
+
+  //   $user = User::find($user_id);
+  //   if ($user) //we are finding user and update
+  //   {
+  //     $user->name = $request->input('name');
+  //     $user->last_name = $request->input('last_name');
+  //     $user->gender = $request->input('gender');
+  //     $user->phone = $request->input('phone');
+  //     $user->email = $request->input('email');
+  //     $user->role_as = $request->role_as;
+  //     $user->password = Hash::make($request->input('password'));
+  //     $user->update();
+
+  //     return redirect('admin/users')->with(['status' => 'User Updated Successfully', 'status_code' => 'success']);
+  //   } else {
+  //     return redirect('admin/users')->with(['status' => 'No User Found', 'status_code' => 'error']);
+  //   }
+  // }
+
+
+  public function update(Request $request, $user_id)
+{
+    $request->validate([
+        'name' => ['required', 'string', 'max:255'],
+        'last_name' => ['required', 'string', 'max:255'],
+        'gender' => ['required', 'string', 'max:50'],
+        'phone' => ['required', 'string', 'max:12'],
+        'email' => ['required', 'string', 'email', 'max:255'],
+        'role_as' => ['required', 'integer'],
+        'password' => ['nullable', 'string', 'min:8'],
     ]);
 
     $user = User::find($user_id);
-    if ($user) //we are finding user and update
-    {
-      $user->name = $request->input('name');
-      $user->last_name = $request->input('last_name');
-      $user->gender = $request->input('gender');
-      $user->phone = $request->input('phone');
-      $user->email = $request->input('email');
-      $user->role_as = $request->role_as;
-      $user->password = Hash::make($request->input('password'));
-      $user->update();
+    if ($user) {
+        // Update user attributes
+        $user->name = $request->input('name');
+        $user->last_name = $request->input('last_name');
+        $user->gender = $request->input('gender');
+        $user->phone = $request->input('phone');
+        $user->email = $request->input('email');
+        $user->role_as = $request->input('role_as');
 
-      return redirect('admin/users')->with(['status' => 'User Updated Successfully', 'status_code' => 'success']);
+        // Only update the password if a new one is provided
+        if ($request->filled('password')) {
+            $user->password = Hash::make($request->input('password'));
+        }
+
+        $user->update();
+
+        return redirect('admin/users')->with(['status' => 'User Updated Successfully', 'status_code' => 'success']);
     } else {
-      return redirect('admin/users')->with(['status' => 'No User Found', 'status_code' => 'error']);
+        return redirect('admin/users')->with(['status' => 'No User Found', 'status_code' => 'error']);
     }
-  }
+}
+
   public function destroy($user_id)
   {
     $user = User::find($user_id);

@@ -25,27 +25,29 @@
                         @method('PUT')
 
                         <div class="form-group mb-3">
-                            <label for="dpname">Department Name:</label>
-                            <input
-                                id="dpname"
-                                type="text"
-                                name="dpname"
+                            <label for="dpname">Name:</label>
+                            <input id="dpname" type="text" name="dpname"
                                 value="{{ old('dpname', $department->dpname) }}"
-                                class="form-control @error('dpname') is-invalid @enderror"
-                                autofocus
-                            />
+                                class="form-control @error('dpname') is-invalid @enderror" autofocus />
                             @error('dpname')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group mb-3">
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description"
+                                class="form-control @error('description') is-invalid @enderror"
+                                autofocus>{{ old('description', $department->description) }}</textarea>
+                            @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3">
                             <label for="status">Approval Status:</label>
-                            <select
-                                id="status"
-                                name="status"
-                                class="form-control selectpicker @error('status') is-invalid @enderror"
-                            >
+                            <select id="status" name="status"
+                                class="form-control selectpicker @error('status') is-invalid @enderror">
                                 <option value="0" {{ old('status', $department->status) == '0' ? 'selected' : '' }}>
                                     Waiting Approval
                                 </option>

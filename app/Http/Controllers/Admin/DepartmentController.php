@@ -21,9 +21,11 @@ class DepartmentController extends Controller
   {
     $request->validate([
       'dpname' => ['required', 'unique:departments'],
+      'description' => ['nullable', 'string'],
     ]);
     $department = new Department;
     $department->dpname = $request->input('dpname');
+    $department->description = $request->input('description');
     $department->save();
 
     return redirect('admin/departments')->with(['status' => 'Department Added Successfully', 'status_code' => 'success']);
@@ -37,11 +39,13 @@ class DepartmentController extends Controller
   public function update(Request $request, $id)
   {
     $request->validate([
-      'dpname' => 'required',
+      'dpname' => 'required|unique:departments,dpname,' . $id,
+      'description' => ['nullable', 'string'],
       'status' => 'nullable'
     ]);
     $department = Department::find($id);
     $department->dpname = $request->input('dpname');
+    $department->description = $request->input('description');
     $department->status = $request->input('status') == true ? '1' : '0';
     $department->update();
 
@@ -53,8 +57,6 @@ class DepartmentController extends Controller
     $department->delete();
     return redirect('admin/departments')->with(['status' => 'Department deleted successfully', 'status_code' => 'success']);
   }
-
-
 }
 
 

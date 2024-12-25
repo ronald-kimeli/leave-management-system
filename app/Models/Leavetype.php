@@ -18,7 +18,8 @@ class Leavetype extends Model
     protected $table = 'leavetypes';
     protected $fillable = [
         'leave_type',
+        'description',
         'status'
-];
+    ];
 
 }

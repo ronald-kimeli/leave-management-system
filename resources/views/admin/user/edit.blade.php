@@ -147,7 +147,7 @@
                                     type="password"
                                     class="form-control @error('password') is-invalid @enderror"
                                     name="password"
-                                    value="{{ old('email', $user->password) }}"
+                                    value="{{ old('password', $user->password) }}"
                                     autocomplete="new-password"
                                 />
                                 @error('password')

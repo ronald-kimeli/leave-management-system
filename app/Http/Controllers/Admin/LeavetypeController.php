@@ -21,10 +21,12 @@ class LeavetypeController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'leave_type' => 'required'
+            'leave_type' => 'required|unique:leavetypes,leave_type',
+            'description' => ['nullable', 'string'],
         ]);
         $leavetype = new Leavetype;
         $leavetype->leave_type = $request->input('leave_type');
+        $leavetype->description = $request->input('description');
         $leavetype->save();
 
         return redirect('admin/leavetype')->with(['status' => 'Leave Type Added Successfully', 'status_code' => 'success']);
@@ -37,11 +39,13 @@ class LeavetypeController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'leave_type' => 'required',
+            'leave_type' => 'required|unique:leavetypes,leave_type,' . $id,
+            'description' => ['nullable', 'string'],
             'status' => 'required'
         ]);
         $leavetype = Leavetype::find($id);
         $leavetype->leave_type = $request->input('leave_type');
+        $leavetype->description = $request->input('description');
         $leavetype->status = $request->input('status') == true ? '1' : '0';
         $leavetype->update();
 

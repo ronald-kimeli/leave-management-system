@@ -25,15 +25,20 @@
 
                         <div class="form-group mb-3">
                             <label for="dpname">Department Name</label>
-                            <input
-                                id="dpname"
-                                type="text"
-                                name="dpname"
-                                class="form-control @error('dpname') is-invalid @enderror"
-                                value="{{ old('dpname') }}"
-                                autofocus
-                            />
+                            <input id="dpname" type="text" name="dpname"
+                                class="form-control @error('dpname') is-invalid @enderror" value="{{ old('dpname') }}"
+                                autofocus />
                             @error('dpname')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description"
+                                class="form-control @error('description') is-invalid @enderror"
+                                rows="1">{{ old('description') }}</textarea>
+                            @error('description')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>

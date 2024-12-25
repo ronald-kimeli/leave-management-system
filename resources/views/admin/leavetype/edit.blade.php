@@ -25,27 +25,28 @@
 
                         <div class="form-group mb-3">
                             <label for="leave_type">Leave Type:</label>
-                            <input
-                                v-model="leavetype.leave_type"
-                                type="text"
-                                id="leave_type"
-                                name="leave_type"
+                            <input v-model="leavetype.leave_type" type="text" id="leave_type" name="leave_type"
                                 value="{{ old('leave_type', $leavetype->leave_type) }}"
-                                class="form-control @error('leave_type') is-invalid @enderror"
-                            />
+                                class="form-control @error('leave_type') is-invalid @enderror" />
                             @error('leave_type')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
 
                         <div class="form-group mb-3">
+                            <label for="description">Description:</label>
+                            <textarea id="description" name="description"
+                                class="form-control @error('description') is-invalid @enderror"
+                                autofocus>{{ old('description', $leavetype->description) }}</textarea>
+                            @error('description')
+                                <span class="text-danger">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div class="form-group mb-3">
                             <label for="status">Status:</label>
-                            <select
-                                v-model="leavetype.status"
-                                id="status"
-                                name="status"
-                                class="form-control @error('status') is-invalid @enderror"
-                            >
+                            <select v-model="leavetype.status" id="status" name="status"
+                                class="form-control @error('status') is-invalid @enderror">
                                 <option value="0" {{ old('status', $leavetype->status) == '0' ? 'selected' : '' }}>
                                     Waiting Approval
                                 </option>

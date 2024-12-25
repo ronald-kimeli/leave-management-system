@@ -15,7 +15,5 @@ class Department extends Model
     }
 
     protected $table = 'departments';
-    protected $fillable = ['dpname'];
-
-
+    protected $fillable = ['dpname','description'];
 }
