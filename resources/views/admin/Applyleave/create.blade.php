@@ -21,9 +21,9 @@
                 <div class="card-body">
                     <form action="{{ url('admin/add/applyleave') }}" method="POST">
                         @csrf
-                        <div class="row">
+                        <div class="row col-md-12 col-lg-12 col-xl-12">
                             <!-- Select User -->
-                            <div class="form-group col-md-4 mb-3">
+                            <div class="form-group col-6 mb-3">
                                 <label for="user_id">Select User:</label>
                                 <select id="user_id" class="form-control @error('user_id') is-invalid @enderror"
                                     name="user_id" value="{{ old('user_id') }}" autocomplete="user_id" autofocus>
@@ -41,7 +41,7 @@
                             </div>
 
                             <!-- Leave Type -->
-                            <div class="form-group col-md-4 mb-3">
+                            <div class="form-group col-6 mb-3">
                                 <label for="leave_type_id">{{ __('Leave Type:') }}</label>
                                 <select id="leave_type_id"
                                     class="form-control @error('leave_type_id') is-invalid @enderror"
@@ -61,8 +61,20 @@
                                 @enderror
                             </div>
 
+
+                            <!-- Description -->
+                            <div class="form-group  mb-3">
+                                <label for="description">{{ __('Description:') }}</label>
+                                <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description"
+                                    placeholder="State the reason for Application!" autofocus>{{ old('description') }}</textarea>
+                                @error('description')
+                                    <span class="text-danger">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+
                             <!-- Leave From -->
-                            <div class="form-group col-md-4 mb-3">
+                            <div class="form-group col-6 mb-3">
                                 <label for="leave_from">{{ __('Leave From:') }}</label>
                                 <input id="leave_from" type="date"
                                     class="form-control @error('leave_from') is-invalid @enderror" name="leave_from"
@@ -73,7 +85,7 @@
                             </div>
 
                             <!-- Leave To -->
-                            <div class="form-group col-md-4 mb-3">
+                            <div class="form-group col-6 mb-3">
                                 <label for="leave_to">{{ __('Leave To:') }}</label>
                                 <input id="leave_to" type="date"
                                     class="form-control @error('leave_to') is-invalid @enderror" name="leave_to"
@@ -82,19 +94,6 @@
                                     <span class="text-danger">{{ $message }}</span>
                                 @enderror
                             </div>
-
-                            <!-- Description -->
-                            <div class="form-group col-md-4 mb-3">
-                                <label for="description">{{ __('Description:') }}</label>
-                                <textarea id="description"
-                                    class="form-control @error('description') is-invalid @enderror" name="description"
-                                    placeholder="State the reason for Application!"
-                                    autofocus>{{ old('description') }}</textarea>
-                                @error('description')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
-                            </div>
-
                         </div>
                         <!-- Submit Button -->
                         <div class="form-group col-md-4 mb-3">

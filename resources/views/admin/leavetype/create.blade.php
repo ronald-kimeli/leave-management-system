@@ -21,8 +21,9 @@
                 <div class="card-body">
                     <form action="{{ url('admin/add/leavetype') }}" method="POST">
                         @csrf
+                        <div class="row col-md-12 col-lg-12 col-xl-12">
 
-                        <div class="form-group mb-3">
+                        <div class="form-group  mb-3">
                             <label for="leave_type">Type</label>
                             <input v-model="leavetype.leave_type" type="text" id="leave_type" name="leave_type"
                                 class="form-control @error('leave_type') is-invalid @enderror"
@@ -46,6 +47,7 @@
                             <button type="submit" class="btn btn-primary">Add</button>
                         </div>
 
+                        </div>
                     </form>
                 </div>
             </div>

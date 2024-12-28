@@ -143,7 +143,7 @@ class ApplyleaveController extends Controller
            return response(['status' => 'error', 'message' => $errors]);
         }
 
-         $data = Applyleave::find($id);
+         $data = Applyleave::findOrFail($id);
          if(($data->status) === 1)
            {
             return redirect('admin/applyleave')->with(['status' => 'Accepted! You cannot update anymore!', 'status_code' => 'error']);  

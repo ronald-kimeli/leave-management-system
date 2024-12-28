@@ -13,12 +13,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-    //   return'I am dashboard';
-    $departments = Department::count(); 
-    $leavetypes = Leavetype::count();
-    $leaves = Applyleave::count();
-    $users = User::where('role_as','0')->count();
-    $admins = User::where('role_as','1')->count();
-        return view('admin.dashboard',compact('departments','leavetypes','leaves','users','admins'));
+        $departments = Department::count();
+        $leavetypes = Leavetype::count();
+        $leaves = Applyleave::count();
+        $users = User::where('role_as', '0')->count();
+        $admins = User::where('role_as', '1')->count();
+        return view('admin.dashboard', compact('departments', 'leavetypes', 'leaves', 'users', 'admins'));
     }
 }
