@@ -89,12 +89,12 @@
     @if(session('status') && session('status_code'))
         <script>
             document.addEventListener('DOMContentLoaded', function () {
-                var toastMessage = "{{ session('status') }}";
-                var toastClass = "{{ session('status_code') }}";  // 'success', 'warning', 'danger', 'error
-                var faviconPath = "{{ asset('backend/images/favicon-32x32.png') }}"; // Path to the favicon
+                let toastMessage = "{{ session('status') }}";
+                let toastClass = "{{ session('status_code') }}";  // 'success', 'warning', 'danger', 'error
+                let faviconPath = "{{ asset('backend/images/favicon-32x32.png') }}"; // Path to the favicon
 
-                var toastHTML = `
-                                    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+                let toastHTML = `
+                                    <div class="toast-container position-fixed top-0 end-0 p-3">
                                         <div id="liveToast" class="toast bg-${toastClass} text-white" role="alert" aria-live="assertive" aria-atomic="true">
                                             <div class="toast-header">
                                                 <img src="${faviconPath}" class="rounded me-2" alt="Favicon" style="width: 20px; height: 20px;">
@@ -111,8 +111,8 @@
 
                 document.body.insertAdjacentHTML('beforeend', toastHTML);
 
-                var toastElement = document.getElementById('liveToast');
-                var toastInstance = new bootstrap.Toast(toastElement, { delay: 3000 });
+                let toastElement = document.getElementById('liveToast');
+                let toastInstance = new bootstrap.Toast(toastElement, { delay: 3000 });
                 toastInstance.show();
             });
         </script>
